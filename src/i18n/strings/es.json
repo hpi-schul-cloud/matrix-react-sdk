@@ -185,7 +185,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s no es accesible en este momento.",
     "Rooms": "Salas",
     "Save": "Guardar",
-    "Scroll to bottom of page": "Bajar al final de la página",
+    "Scroll to most recent messages": "Bajar al final de la página",
     "Search": "Buscar",
     "Search failed": "Falló la búsqueda",
     "Seen by %(userName)s at %(dateTime)s": "Visto por %(userName)s el %(dateTime)s",

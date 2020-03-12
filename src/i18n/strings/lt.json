@@ -368,7 +368,7 @@
     "Delete Widget": "Ištrinti valdiklį",
     "Delete widget": "Ištrinti valdiklį",
     "Failed to remove widget": "Nepavyko pašalinti valdiklį",
-    "Scroll to bottom of page": "Slinkti į puslapio apačią",
+    "Scroll to most recent messages": "Slinkti į puslapio apačią",
     "%(count)s of your messages have not been sent.|other": "Kai kurios iš jūsų žinučių nebuvo išsiųstos.",
     "%(count)s of your messages have not been sent.|one": "Jūsų žinutė nebuvo išsiųsta.",
     "Connectivity to the server has been lost.": "Jungiamumas su šiuo serveriu buvo prarastas.",

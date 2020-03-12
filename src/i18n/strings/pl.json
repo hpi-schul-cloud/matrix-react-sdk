@@ -284,7 +284,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s nie jest dostępny w tym momencie.",
     "Rooms": "Pokoje",
     "Save": "Zapisz",
-    "Scroll to bottom of page": "Przewiń do końca strony",
+    "Scroll to most recent messages": "Przewiń do końca strony",
     "Search failed": "Wyszukiwanie nie powiodło się",
     "Searches DuckDuckGo for results": "Używa DuckDuckGo dla wyników",
     "Seen by %(userName)s at %(dateTime)s": "Widziane przez %(userName)s o %(dateTime)s",

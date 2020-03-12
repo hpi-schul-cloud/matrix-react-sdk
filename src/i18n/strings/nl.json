@@ -256,7 +256,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s is op dit moment niet toegankelijk.",
     "Rooms": "Gesprekken",
     "Save": "Opslaan",
-    "Scroll to bottom of page": "Scroll naar de onderkant van de pagina",
+    "Scroll to most recent messages": "Scroll naar de onderkant van de pagina",
     "Search failed": "Zoeken mislukt",
     "Searches DuckDuckGo for results": "Zoekt op DuckDuckGo voor resultaten",
     "Seen by %(userName)s at %(dateTime)s": "Gezien door %(userName)s om %(dateTime)s",

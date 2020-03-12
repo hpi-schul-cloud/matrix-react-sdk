@@ -221,7 +221,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s şu anda erişilebilir değil.",
     "Rooms": "Odalar",
     "Save": "Kaydet",
-    "Scroll to bottom of page": "Sayfanın altına kaydır",
+    "Scroll to most recent messages": "Sayfanın altına kaydır",
     "Search": "Ara",
     "Search failed": "Arama başarısız",
     "Searches DuckDuckGo for results": "Sonuçlar için DuckDuckGo'yu arar",

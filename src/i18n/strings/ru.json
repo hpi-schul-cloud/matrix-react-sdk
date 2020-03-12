@@ -232,7 +232,7 @@
     "Room %(roomId)s not visible": "Комната %(roomId)s невидима",
     "Room Colour": "Цвет комнаты",
     "Rooms": "Комнаты",
-    "Scroll to bottom of page": "Перейти к нижней части страницы",
+    "Scroll to most recent messages": "Перейти к нижней части страницы",
     "Search": "Поиск",
     "Search failed": "Поиск не удался",
     "%(senderDisplayName)s sent an image.": "%(senderDisplayName)s отправил(а) изображение.",

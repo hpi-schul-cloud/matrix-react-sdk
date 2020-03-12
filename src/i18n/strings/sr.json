@@ -575,7 +575,7 @@
     "Create a new community": "Направи нову заједницу",
     "Create a community to group together users and rooms! Build a custom homepage to mark out your space in the Matrix universe.": "Направите заједницу да бисте спојили кориснике и собе! Направите прилагођену почетну страницу да бисте означили ваш кутак у Матрикс универзуму.",
     "You have no visible notifications": "Немате видљивих обавештења",
-    "Scroll to bottom of page": "Превуци на дно странице",
+    "Scroll to most recent messages": "Превуци на дно странице",
     "%(count)s of your messages have not been sent.|other": "Неке ваше поруке нису послате.",
     "%(count)s of your messages have not been sent.|one": "Ваша порука није послата.",
     "%(count)s <resendText>Resend all</resendText> or <cancelText>cancel all</cancelText> now. You can also select individual messages to resend or cancel.|other": "<resendText>Пошаљи поново</resendText> или <cancelText>откажи све</cancelText> сада. Такође можете изабрати појединачне поруке за поновно слање или отказивање.",

@@ -220,7 +220,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s är inte tillgängligt för tillfället.",
     "Rooms": "Rum",
     "Save": "Spara",
-    "Scroll to bottom of page": "Gå till slutet av sidan",
+    "Scroll to most recent messages": "Gå till slutet av sidan",
     "Search": "Sök",
     "Search failed": "Sökning misslyckades",
     "Searches DuckDuckGo for results": "Söker efter resultat på DuckDuckGo",

@@ -755,7 +755,7 @@
     "Room not found": "Fann ikkje rommet",
     "Couldn't find a matching Matrix room": "Kunne ikkje finna eit samsvarande Matrixrom",
     "Fetching third party location failed": "Noko gjekk gale med hentinga tredjepartiplasseringa",
-    "Scroll to bottom of page": "Blad til botnen",
+    "Scroll to most recent messages": "Blad til botnen",
     "You can't send any messages until you review and agree to <consentLink>our terms and conditions</consentLink>.": "Du kan ikkje senda meldingar før du ser over og seier deg einig i våre <consentLink>Vilkår og Føresetnader</consentLink>.",
     "%(count)s of your messages have not been sent.|other": "Nokre av meldingane dine vart ikkje sende.",
     "%(count)s of your messages have not been sent.|one": "Meldinga di vart ikkje send.",

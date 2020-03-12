@@ -835,7 +835,7 @@
     "Create a new community": "新しいコミュニティを作成する",
     "Create a community to group together users and rooms! Build a custom homepage to mark out your space in the Matrix universe.": "ユーザーと部屋をグループ化するコミュニティを作成してください! Matrixユニバースにあなたの空間を目立たせるためにカスタムホームページを作成してください。",
     "You have no visible notifications": "表示される通知はありません",
-    "Scroll to bottom of page": "ページの一番下にスクロールする",
+    "Scroll to most recent messages": "ページの一番下にスクロールする",
     "You can't send any messages until you review and agree to <consentLink>our terms and conditions</consentLink>.": "<consentLink>利用規約</consentLink> を確認して同意するまでは、いかなるメッセージも送信できません。",
     "Your message wasn't sent because this homeserver has hit its Monthly Active User Limit. Please <a>contact your service administrator</a> to continue using the service.": "このホームサーバーが月間アクティブユーザー制限を超えたため、メッセージは送信されませんでした。 サービスを引き続き使用するには、<a>サービス管理者にお問い合わせ</a>ください。",
     "Your message wasn't sent because this homeserver has exceeded a resource limit. Please <a>contact your service administrator</a> to continue using the service.": "このホームサーバーがリソース制限を超えたため、メッセージは送信されませんでした。 サービスを引き続き使用するには、<a>サービス管理者にお問い合わせ</a>ください。",

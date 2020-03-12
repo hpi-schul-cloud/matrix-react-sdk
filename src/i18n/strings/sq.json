@@ -610,7 +610,7 @@
     "Failed to load %(groupId)s": "S’u arrit të ngarkohej %(groupId)s",
     "Failed to reject invitation": "S’u arrit të hidhej poshtë ftesa",
     "Failed to leave room": "S’u arrit të braktisej",
-    "Scroll to bottom of page": "Rrëshqit te fundi i faqes",
+    "Scroll to most recent messages": "Rrëshqit te fundi i faqes",
     "Unknown room %(roomId)s": "Dhomë e panjohur %(roomId)s",
     "Fill screen": "Mbushe ekranin",
     "Tried to load a specific point in this room's timeline, but was unable to find it.": "U provua të ngarkohej një pikë të dhënë prej rrjedhës kohore në këtë dhomë, por s’u arrit të gjendej.",

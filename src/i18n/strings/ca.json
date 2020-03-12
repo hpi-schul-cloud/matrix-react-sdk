@@ -567,7 +567,7 @@
     "Create a new community": "Crea una comunitat nova",
     "Create a community to group together users and rooms! Build a custom homepage to mark out your space in the Matrix universe.": "Crea una comunitat per agrupar usuaris i sales! Creeu una pàgina d'inici personalitzada per definir el vostre espai a l'univers Matrix.",
     "You have no visible notifications": "No teniu cap notificació visible",
-    "Scroll to bottom of page": "Desplaça't fins a la part inferior de la pàgina",
+    "Scroll to most recent messages": "Desplaça't fins a la part inferior de la pàgina",
     "%(count)s of your messages have not been sent.|other": "Alguns dels vostres missatges no s'han enviat.",
     "%(count)s of your messages have not been sent.|one": "El vostre missatge no s'ha enviat.",
     "Warning": "Avís",

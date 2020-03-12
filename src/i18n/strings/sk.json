@@ -511,7 +511,7 @@
     "Create a new community": "Vytvoriť novú komunitu",
     "Create a community to group together users and rooms! Build a custom homepage to mark out your space in the Matrix universe.": "Vytvorte si komunitu s cieľom zoskupiť miestnosti a používateľov! Zostavte si vlastnú domovskú stránku a vymedzte tak svoj priestor vo svete Matrix.",
     "You have no visible notifications": "Nie sú k dispozícii žiadne oznámenia",
-    "Scroll to bottom of page": "Posunúť na spodok stránky",
+    "Scroll to most recent messages": "Posunúť na spodok stránky",
     "Connectivity to the server has been lost.": "Spojenie so serverom bolo prerušené.",
     "Sent messages will be stored until your connection has returned.": "Odoslané správy ostanú uložené, kým sa spojenie nenadviaže znovu.",
     "Active call": "Aktívny hovor",

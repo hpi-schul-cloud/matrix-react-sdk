@@ -215,7 +215,7 @@
     "%(roomName)s does not exist.": "%(roomName)s neexistuje.",
     "%(roomName)s is not accessible at this time.": "Místnost %(roomName)s není v tuto chvíli dostupná.",
     "Save": "Uložit",
-    "Scroll to bottom of page": "Přejít na konec stránky",
+    "Scroll to most recent messages": "Přejít na konec stránky",
     "Send anyway": "Přesto poslat",
     "Send Reset Email": "Poslat resetovací e-mail",
     "%(senderDisplayName)s sent an image.": "Uživatel %(senderDisplayName)s poslal obrázek.",

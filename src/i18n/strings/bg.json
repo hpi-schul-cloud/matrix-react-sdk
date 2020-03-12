@@ -579,7 +579,7 @@
     "Sign out": "Изход",
     "Error whilst fetching joined communities": "Грешка при извличането на общности, към които сте присъединени",
     "You have no visible notifications": "Нямате видими известия",
-    "Scroll to bottom of page": "Отиди до края на страницата",
+    "Scroll to most recent messages": "Отиди до края на страницата",
     "%(count)s of your messages have not been sent.|other": "Някои от Вашите съобщение не бяха изпратени.",
     "%(count)s of your messages have not been sent.|one": "Вашето съобщение не беше изпратено.",
     "%(count)s <resendText>Resend all</resendText> or <cancelText>cancel all</cancelText> now. You can also select individual messages to resend or cancel.|other": "<resendText>Изпрати всички отново</resendText> или <cancelText>откажи всички</cancelText> сега. Също така може да изберете индивидуални съобщения, които да изпратите отново или да откажете.",

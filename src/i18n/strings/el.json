@@ -335,7 +335,7 @@
     "Riot does not have permission to send you notifications - please check your browser settings": "Το Riot δεν έχει δικαιώματα για αποστολή ειδοποιήσεων - παρακαλούμε ελέγξτε τις ρυθμίσεις του περιηγητή σας",
     "Riot was not given permission to send notifications - please try again": "Δεν δόθηκαν δικαιώματα αποστολής ειδοποιήσεων στο Riot - παρακαλούμε προσπαθήστε ξανά",
     "%(roomName)s is not accessible at this time.": "Το %(roomName)s δεν είναι προσβάσιμο αυτή τη στιγμή.",
-    "Scroll to bottom of page": "Μετάβαση στο τέλος της σελίδας",
+    "Scroll to most recent messages": "Μετάβαση στο τέλος της σελίδας",
     "Server may be unavailable, overloaded, or search timed out :(": "Ο διακομιστής μπορεί να είναι μη διαθέσιμος, υπερφορτωμένος, ή να έχει λήξει η αναζήτηση :(",
     "Server may be unavailable, overloaded, or you hit a bug.": "Ο διακομιστής μπορεί να είναι μη διαθέσιμος, υπερφορτωμένος, ή να πέσατε σε ένα σφάλμα.",
     "Server unavailable, overloaded, or something else went wrong.": "Ο διακομιστής μπορεί να είναι μη διαθέσιμος, υπερφορτωμένος, ή κάτι άλλο να πήγε στραβά.",

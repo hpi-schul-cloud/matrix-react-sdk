@@ -263,7 +263,7 @@
     "Room Colour": "Gelaren kolorea",
     "%(roomName)s does not exist.": "Ez dago %(roomName)s izeneko gela.",
     "%(roomName)s is not accessible at this time.": "%(roomName)s ez dago eskuragarri orain.",
-    "Scroll to bottom of page": "Korritu orria behera arte",
+    "Scroll to most recent messages": "Korritu orria behera arte",
     "Search failed": "Bilaketak huts egin du",
     "Searches DuckDuckGo for results": "DuckDuckGo-n bilatzen ditu emaitzak",
     "Seen by %(userName)s at %(dateTime)s": "%(userName)s erabiltzaileak ikusia %(dateTime)s(e)an",

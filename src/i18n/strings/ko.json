@@ -235,7 +235,7 @@
     "%(roomName)s is not accessible at this time.": "현재는 %(roomName)s에 들어갈 수 없습니다.",
     "Rooms": "방",
     "Save": "저장",
-    "Scroll to bottom of page": "화면 맨 아래로 이동",
+    "Scroll to most recent messages": "화면 맨 아래로 이동",
     "Search failed": "검색 실패함",
     "Searches DuckDuckGo for results": "DuckDuckGo에서 검색하기",
     "Seen by %(userName)s at %(dateTime)s": "%(userName)s님이 %(dateTime)s에 확인함",

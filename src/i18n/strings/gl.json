@@ -553,7 +553,7 @@
     "Create a new community": "Crear unha nova comunidade",
     "Create a community to group together users and rooms! Build a custom homepage to mark out your space in the Matrix universe.": "Crear unha comunidade para agrupar usuarias e salas! Poña unha páxina de inicio personalizada para destacar o seu lugar no universo Matrix.",
     "You have no visible notifications": "Non ten notificacións visibles",
-    "Scroll to bottom of page": "Desprácese ate o final da páxina",
+    "Scroll to most recent messages": "Desprácese ate o final da páxina",
     "%(count)s of your messages have not been sent.|other": "Algunha das súas mensaxes non foron enviadas.",
     "%(count)s of your messages have not been sent.|one": "A súa mensaxe non foi enviada.",
     "%(count)s <resendText>Resend all</resendText> or <cancelText>cancel all</cancelText> now. You can also select individual messages to resend or cancel.|other": "<resendText>Reenviar todo</resendText> ou ben<cancelText>cancelar todo</cancelText>. Tamén pode seleccionar mensaxes individuais para reenviar ou cancelar.",

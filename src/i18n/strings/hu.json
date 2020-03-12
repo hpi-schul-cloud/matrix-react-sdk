@@ -230,7 +230,7 @@
     "%(roomName)s is not accessible at this time.": "%(roomName)s jelenleg nem érhető el.",
     "Rooms": "Szobák",
     "Save": "Mentés",
-    "Scroll to bottom of page": "Az oldal aljára görget",
+    "Scroll to most recent messages": "Az oldal aljára görget",
     "Search failed": "Keresés sikertelen",
     "Searches DuckDuckGo for results": "Keresés DuckDuckGóval",
     "Seen by %(userName)s at %(dateTime)s": "%(userName)s %(dateTime)s időpontban látta",
