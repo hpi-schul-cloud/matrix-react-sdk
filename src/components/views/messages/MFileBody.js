@@ -46,20 +46,18 @@ function updateTintedDownloadImage() {
     // Also note that we can't use fetch here because fetch doesn't support
     // file URLs, which the download image will be if we're running from
     // the filesystem (like in an Electron wrapper).
-    request({uri: require("../../../../res/img/download.svg")}, (err, response, body) => {
-        if (err) return;
+    const body = require("../../../../res/img/download.svg");
 
-        const svg = new DOMParser().parseFromString(body, "image/svg+xml");
-        // Apply the fixups to the XML.
-        const fixups = Tinter.calcSvgFixups([{contentDocument: svg}]);
-        Tinter.applySvgFixups(fixups);
-        // Encoded the fixed up SVG as a data URL.
-        const svgString = new XMLSerializer().serializeToString(svg);
-        tintedDownloadImageURL = "data:image/svg+xml;base64," + window.btoa(svgString);
-        // Notify each mounted MFileBody that the URL has changed.
-        Object.keys(mounts).forEach(function(id) {
-            mounts[id].tint();
-        });
+    const svg = new DOMParser().parseFromString(body, "image/svg+xml");
+    // Apply the fixups to the XML.
+    const fixups = Tinter.calcSvgFixups([{contentDocument: svg}]);
+    Tinter.applySvgFixups(fixups);
+    // Encoded the fixed up SVG as a data URL.
+    const svgString = new XMLSerializer().serializeToString(svg);
+    tintedDownloadImageURL = "data:image/svg+xml;base64," + window.btoa(svgString);
+    // Notify each mounted MFileBody that the URL has changed.
+    Object.keys(mounts).forEach(function(id) {
+        mounts[id].tint();
     });
 }
 

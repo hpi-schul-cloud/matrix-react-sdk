@@ -193,26 +193,39 @@ export async function setTheme(theme) {
     for (let i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
         const href = a.getAttribute("href");
         // shouldn't we be using the 'title' tag rather than the href?
-        const match = href.match(/^bundles\/.*\/theme-(.*)\.css$/);
+        const match = href.match(/bundles\/.*\/theme-(.*)\.css$/);
         if (match) {
             styleElements[match[1]] = a;
         }
     }
 
     if (!(stylesheetName in styleElements)) {
-        // add <link tag lazy: TODO: how to find path?
-        // const indexedDbPath = document.getElementById('matrixchat').dataset.vectorIndexeddbWorkerScript;
-        // const hash = indexedDbPath.split('/')[1];
-        // let newLink = document.createElement('link');
-        // newLink.setAttribute('rel', 'stylesheet');
-        // newLink.setAttribute('disabled', '');
-        // newLink.setAttribute('title', 'Theme');
-        // newLink.setAttribute('href', 'bundles/' + hash + '/theme-' + stylesheetName + '.css');
-        // console.log(stylesheetName)
-        // styleElements[stylesheetName] = newLink;
-        // document.head.appendChild(newLink);
+        // > find bundle.js and hash
+        let hash;
+        let b;
+        for (let i = 0; (b = document.getElementsByTagName("script")[i]); i++) {
+            const href = b.getAttribute("src");
+            if (href.indexOf(__webpack_public_path__) === 0) {
+                const match = href.match(/bundles\/(.*)\/bundle\.js$/);
+                if (match) {
+                    hash = match[1];
+                }
+            }
+        }
 
-        throw new Error("Unknown theme " + stylesheetName);
+        // add <link tag lazy
+        if (hash) {
+            const newLink = document.createElement('link');
+            newLink.setAttribute('rel', 'stylesheet');
+            newLink.setAttribute('disabled', '');
+            newLink.setAttribute('title', 'Theme');
+            newLink.setAttribute('href', __webpack_public_path__ + 'bundles/' + hash + '/theme-' + stylesheetName + '.css');
+            console.log(stylesheetName);
+            styleElements[stylesheetName] = newLink;
+            document.head.appendChild(newLink);
+        } else {
+            throw new Error("Unknown theme " + stylesheetName);
+        }
     }
 
     // disable all of them first, then enable the one we want. Chrome only

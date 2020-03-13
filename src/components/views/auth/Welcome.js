@@ -33,6 +33,10 @@ export default class Welcome extends React.PureComponent {
             pageUrl = 'welcome.html';
         }
 
+        // ToDo: REAL PATH
+        const serveUrl = __webpack_public_path__;
+        pageUrl = serveUrl + pageUrl
+
         return (
             <AuthPage>
                 <div className="mx_Welcome">
