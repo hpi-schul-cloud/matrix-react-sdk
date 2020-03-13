@@ -333,7 +333,7 @@ export default createReactClass({
                         const tempAnchor = document.createElement('a');
                         tempAnchor.download = fileName;
                         tempAnchor.href = blobUrl;
-                        document.body.appendChild(tempAnchor); // for firefox: https://stackoverflow.com/a/32226068
+                        document.getElementById('matrixchat').appendChild(tempAnchor); // for firefox: https://stackoverflow.com/a/32226068
                         tempAnchor.click();
                         tempAnchor.remove();
                     });

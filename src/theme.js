@@ -142,7 +142,7 @@ export function enumerateThemes() {
 }
 
 function setCustomThemeVars(customTheme) {
-    const {style} = document.body;
+    const {style} = document.getElementById('matrixchat');
     if (customTheme.colors) {
         for (const [name, hexColor] of Object.entries(customTheme.colors)) {
             style.setProperty(`--${name}`, hexColor);
@@ -200,6 +200,18 @@ export async function setTheme(theme) {
     }
 
     if (!(stylesheetName in styleElements)) {
+        // add <link tag lazy: TODO: how to find path?
+        // const indexedDbPath = document.getElementById('matrixchat').dataset.vectorIndexeddbWorkerScript;
+        // const hash = indexedDbPath.split('/')[1];
+        // let newLink = document.createElement('link');
+        // newLink.setAttribute('rel', 'stylesheet');
+        // newLink.setAttribute('disabled', '');
+        // newLink.setAttribute('title', 'Theme');
+        // newLink.setAttribute('href', 'bundles/' + hash + '/theme-' + stylesheetName + '.css');
+        // console.log(stylesheetName)
+        // styleElements[stylesheetName] = newLink;
+        // document.head.appendChild(newLink);
+
         throw new Error("Unknown theme " + stylesheetName);
     }
 

@@ -72,7 +72,7 @@ export default createReactClass({
     copyToClipboard: function(text) {
         const textArea = document.createElement("textarea");
         textArea.value = text;
-        document.body.appendChild(textArea);
+        document.getElementById('matrixchat').appendChild(textArea);
         textArea.select();
 
         let successful = false;
@@ -82,7 +82,7 @@ export default createReactClass({
             console.log('Unable to copy');
         }
 
-        document.body.removeChild(textArea);
+        document.getElementById('matrixchat').removeChild(textArea);
         return successful;
     },
 

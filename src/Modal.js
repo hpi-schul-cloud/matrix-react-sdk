@@ -60,7 +60,7 @@ class ModalManager {
         if (!container) {
             container = document.createElement("div");
             container.id = DIALOG_CONTAINER_ID;
-            document.body.appendChild(container);
+            document.getElementById('matrixchat').appendChild(container);
         }
 
         return container;
@@ -72,7 +72,7 @@ class ModalManager {
         if (!container) {
             container = document.createElement("div");
             container.id = STATIC_DIALOG_CONTAINER_ID;
-            document.body.appendChild(container);
+            document.getElementById('matrixchat').appendChild(container);
         }
 
         return container;

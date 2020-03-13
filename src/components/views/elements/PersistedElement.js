@@ -36,7 +36,7 @@ function getOrCreateContainer(containerId) {
     if (!container) {
         container = document.createElement("div");
         container.id = containerId;
-        document.body.appendChild(container);
+        document.getElementById('matrixchat').appendChild(container);
     }
 
     return container;

@@ -30,9 +30,9 @@ function getScrollbarWidth(alternativeOverflow) {
         div.style.overflow = alternativeOverflow;
     }
     div.style.msOverflowStyle = '-ms-autohiding-scrollbar';
-    document.body.appendChild(div);
+    document.getElementById('matrixchat').appendChild(div);
     const scrollbarWidth = (div.offsetWidth - div.clientWidth);
-    document.body.removeChild(div);
+    document.getElementById('matrixchat').removeChild(div);
     return scrollbarWidth;
 }
 
@@ -42,14 +42,14 @@ function install() {
         const hasForcedOverlayScrollbar = getScrollbarWidth('overlay') === 0;
         // overflow: overlay on webkit doesn't auto hide the scrollbar
         if (hasForcedOverlayScrollbar) {
-            document.body.classList.add("mx_scrollbar_overlay_noautohide");
+            document.getElementById('matrixchat').classList.add("mx_scrollbar_overlay_noautohide");
         } else {
-            document.body.classList.add("mx_scrollbar_nooverlay");
+            document.getElementById('matrixchat').classList.add("mx_scrollbar_nooverlay");
             const style = document.createElement('style');
             style.type = 'text/css';
             style.innerText =
                 `body.mx_scrollbar_nooverlay { --scrollbar-width: ${scrollbarWidth}px; }`;
-            document.head.appendChild(style);
+            document.getElementById('matrixchat').appendChild(style);
         }
     }
 }
@@ -101,7 +101,7 @@ export default class AutoHideScrollbar extends React.Component {
     componentDidMount() {
         installBodyClassesIfNeeded();
         this._needsOverflowListener =
-            document.body.classList.contains("mx_scrollbar_nooverlay");
+            document.getElementById('matrixchat').classList.contains("mx_scrollbar_nooverlay");
         this.checkOverflow();
     }
 

@@ -53,7 +53,7 @@ export default createReactClass({
     componentDidMount: function() {
         this.tooltipContainer = document.createElement("div");
         this.tooltipContainer.className = "mx_Tooltip_wrapper";
-        document.body.appendChild(this.tooltipContainer);
+        document.getElementById('matrixchat').appendChild(this.tooltipContainer);
         window.addEventListener('scroll', this._renderTooltip, true);
 
         this.parent = ReactDOM.findDOMNode(this).parentNode;
@@ -74,7 +74,7 @@ export default createReactClass({
         });
 
         ReactDOM.unmountComponentAtNode(this.tooltipContainer);
-        document.body.removeChild(this.tooltipContainer);
+        document.getElementById('matrixchat').removeChild(this.tooltipContainer);
         window.removeEventListener('scroll', this._renderTooltip, true);
     },
 
