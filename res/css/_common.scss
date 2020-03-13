@@ -16,14 +16,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-html {
-    /* hack to stop overscroll bounce on OSX and iOS.
-       N.B. Breaks things when we have legitimate horizontal overscroll */
-    height: 100%;
-    overflow: hidden;
-}
+//html {
+//    /* hack to stop overscroll bounce on OSX and iOS.
+//       N.B. Breaks things when we have legitimate horizontal overscroll */
+//    height: 100%;
+//    overflow: hidden;
+//}
 
-body {
+#matrixchat {
     font-family: $font-family;
     font-size: 15px;
     background-color: $primary-bg-color;

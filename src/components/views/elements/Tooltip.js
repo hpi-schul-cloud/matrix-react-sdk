@@ -89,7 +89,9 @@ export default createReactClass({
             offset = Math.floor(parentBox.height - MIN_TOOLTIP_HEIGHT);
         }
         style.top = (parentBox.top - 2) + window.pageYOffset + offset;
-        style.left = 6 + parentBox.right + window.pageXOffset;
+        //style.left = 6 + parentBox.right + window.pageXOffset - 300;
+        // show tooltip left of the target
+        style.right = window.innerWidth - parentBox.right + 6;
         return style;
     },
 

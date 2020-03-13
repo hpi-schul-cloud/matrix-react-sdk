@@ -24,6 +24,7 @@ import * as Avatar from '../../Avatar';
 import { _t } from '../../languageHandler';
 import dis from "../../dispatcher";
 import {ContextMenu, ContextMenuButton} from "./ContextMenu";
+import HeaderButton from "../views/right_panel/HeaderButton";
 
 const AVATAR_SIZE = 28;
 
@@ -102,6 +103,13 @@ export default class TopLeftMenuButton extends React.Component {
         });
     };
 
+    _onCollapseClicked() {
+        const panel = document.getElementsByClassName('mx_LeftPanel_container');
+        if (panel && panel.length) {
+            panel[0].classList.toggle('toggled');
+        }
+    }
+
     render() {
         const cli = MatrixClientPeg.get().getUserId();
 
@@ -132,25 +140,34 @@ export default class TopLeftMenuButton extends React.Component {
         }
 
         return <React.Fragment>
-            <ContextMenuButton
-                className="mx_TopLeftMenuButton"
-                onClick={this.openMenu}
-                inputRef={(r) => this._buttonRef = r}
-                label={_t("Your profile")}
-                isExpanded={this.state.menuDisplayed}
-            >
-                <BaseAvatar
-                    idName={MatrixClientPeg.get().getUserId()}
-                    name={name}
-                    url={this.state.profileInfo && this.state.profileInfo.avatarUrl}
-                    width={AVATAR_SIZE}
-                    height={AVATAR_SIZE}
-                    resizeMethod="crop"
-                />
-                { nameElement }
-                { chevronElement }
-            </ContextMenuButton>
-
+            <div className="my_HeaderContainer">
+                <ContextMenuButton
+                    className="mx_TopLeftMenuButton"
+                    onClick={this.openMenu}
+                    inputRef={(r) => this._buttonRef = r}
+                    label={_t("Your profile")}
+                    isExpanded={this.state.menuDisplayed}
+                >
+                    <BaseAvatar
+                        idName={MatrixClientPeg.get().getUserId()}
+                        name={name}
+                        url={this.state.profileInfo && this.state.profileInfo.avatarUrl}
+                        width={AVATAR_SIZE}
+                        height={AVATAR_SIZE}
+                        resizeMethod="crop"
+                    />
+                    { nameElement }
+                    { chevronElement }
+                </ContextMenuButton>
+                <div className="my_CollapseButtons">
+                    <HeaderButton
+                        key="collapseButton" name="collapseButton"
+                        title={_t('Toggle')}
+                        onClick={this._onCollapseClicked}
+                        analytics={['Left Panel', 'Collapse Button', 'click']}
+                    />
+                </div>
+            </div>
             { contextMenu }
         </React.Fragment>;
     }

@@ -32,6 +32,7 @@ import MatrixClientContext from "../../contexts/MatrixClientContext";
 const TagPanel = createReactClass({
     displayName: 'TagPanel',
 
+
     statics: {
         contextType: MatrixClientContext,
     },

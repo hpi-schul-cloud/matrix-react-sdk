@@ -20,12 +20,12 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import classNames from 'classnames';
 import * as sdk from '../../../index';
-import { _t } from '../../../languageHandler';
+import {_t} from '../../../languageHandler';
 import {MatrixClientPeg} from '../../../MatrixClientPeg';
 import Modal from "../../../Modal";
 import RateLimitedFunc from '../../../ratelimitedfunc';
 
-import { linkifyElement } from '../../../HtmlUtils';
+import {linkifyElement} from '../../../HtmlUtils';
 import AccessibleButton from '../elements/AccessibleButton';
 import ManageIntegsButton from '../elements/ManageIntegsButton';
 import {CancelButton} from './SimpleRoomHeader';
@@ -34,6 +34,7 @@ import RoomHeaderButtons from '../right_panel/RoomHeaderButtons';
 import DMRoomMap from '../../../utils/DMRoomMap';
 import E2EIcon from './E2EIcon';
 import InviteOnlyIcon from './InviteOnlyIcon';
+import HeaderButton from "../right_panel/HeaderButton";
 
 export default createReactClass({
     displayName: 'RoomHeader',
@@ -148,6 +149,13 @@ export default createReactClass({
         if (!currentPinEvent) return false;
 
         return !(currentPinEvent.getContent().pinned && currentPinEvent.getContent().pinned.length <= 0);
+    },
+
+    _onCollapseClicked() {
+        const rooms = document.getElementsByClassName('mx_RoomView');
+        if (rooms && rooms.length) {
+            rooms[0].classList.toggle('toggled');
+        }
     },
 
     render: function() {
@@ -322,6 +330,15 @@ export default createReactClass({
                     { cancelButton }
                     { rightRow }
                     <RoomHeaderButtons />
+                    <div class="my_CollapseButtons">
+                        <HeaderButton
+                            key="collapseButton"
+                            name="collapseButton"
+                            title={_t('Notifications')}
+                            onClick={this._onCollapseClicked}
+                            analytics={['Right Panel', 'Collapse Button', 'click']}
+                        />
+                    </div>
                 </div>
             </div>
         );
