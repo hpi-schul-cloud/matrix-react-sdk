@@ -117,8 +117,9 @@ export default class TopLeftMenuButton extends React.Component {
         let nameElement;
         let chevronElement;
         if (!this.props.collapsed) {
+            // { name }
             nameElement = <div className="mx_TopLeftMenuButton_name">
-                { name }
+                Chat-Menü
             </div>;
             chevronElement = <span className="mx_TopLeftMenuButton_chevron" />;
         }
@@ -151,7 +152,7 @@ export default class TopLeftMenuButton extends React.Component {
                     <BaseAvatar
                         idName={MatrixClientPeg.get().getUserId()}
                         name={name}
-                        url={this.state.profileInfo && this.state.profileInfo.avatarUrl}
+                        url={require("../../../res/img/chat-icon.png") }
                         width={AVATAR_SIZE}
                         height={AVATAR_SIZE}
                         resizeMethod="crop"

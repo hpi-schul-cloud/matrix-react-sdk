@@ -198,7 +198,7 @@ const LoggedInView = createReactClass({
         if (lhsSize !== null) {
             lhsSize = parseInt(lhsSize, 10);
         } else {
-            lhsSize = 350;
+            lhsSize = 300;
         }
         this.resizer.forHandleAt(0).resize(lhsSize);
     },
