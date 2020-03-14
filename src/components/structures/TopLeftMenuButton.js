@@ -141,10 +141,10 @@ export default class TopLeftMenuButton extends React.Component {
         }
 
         return <React.Fragment>
-            <div className="my_HeaderContainer">
+            <div className="my_HeaderContainer" onClick={this._onCollapseClicked}>
                 <ContextMenuButton
                     className="mx_TopLeftMenuButton"
-                    onClick={this.openMenu}
+                    onClick={function() {}}
                     inputRef={(r) => this._buttonRef = r}
                     label={_t("Your profile")}
                     isExpanded={this.state.menuDisplayed}
@@ -162,9 +162,11 @@ export default class TopLeftMenuButton extends React.Component {
                 </ContextMenuButton>
                 <div className="my_CollapseButtons">
                     <HeaderButton
-                        key="collapseButton" name="collapseButton"
+                        key="collapseButton"
+                        name="collapseButton"
+                        isHighlighted={false}
+                        onClick={function() {}}
                         title={_t('Toggle')}
-                        onClick={this._onCollapseClicked}
                         analytics={['Left Panel', 'Collapse Button', 'click']}
                     />
                 </div>

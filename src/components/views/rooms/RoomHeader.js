@@ -216,7 +216,7 @@ export default createReactClass({
 
         const textClasses = classNames('mx_RoomHeader_nametext', { mx_RoomHeader_settingsHint: settingsHint });
         const name =
-            <div className="mx_RoomHeader_name" onClick={this.props.onSettingsClick}>
+            <div className="mx_RoomHeader_name" onClick={this._onCollapseClicked}>
                 <div dir="auto" className={textClasses} title={roomName}>{ roomName }</div>
                 { searchStatus }
             </div>;
@@ -229,7 +229,7 @@ export default createReactClass({
             }
         }
         const topicElement =
-            <div className="mx_RoomHeader_topic" ref={this._topic} title={topic} dir="auto">{ topic }</div>;
+            <div className="mx_RoomHeader_topic" onClick={this._onCollapseClicked} ref={this._topic} title={topic} dir="auto">{ topic }</div>;
         const avatarSize = 28;
         let roomAvatar;
         if (this.props.room) {
@@ -323,19 +323,20 @@ export default createReactClass({
         return (
             <div className="mx_RoomHeader light-panel">
                 <div className="mx_RoomHeader_wrapper" aria-owns="mx_RightPanel">
-                    <div className="mx_RoomHeader_avatar">{ roomAvatar }{ e2eIcon }</div>
+                    <div className="mx_RoomHeader_avatar" onClick={this._onCollapseClicked}>{ roomAvatar }{ e2eIcon }</div>
                     { privateIcon }
                     { name }
                     { topicElement }
                     { cancelButton }
                     { rightRow }
                     <RoomHeaderButtons />
-                    <div class="my_CollapseButtons">
+                    <div className="my_CollapseButtons">
                         <HeaderButton
                             key="collapseButton"
                             name="collapseButton"
-                            title={_t('Notifications')}
+                            title={_t('Collapse')}
                             onClick={this._onCollapseClicked}
+                            isHighlighted={false}
                             analytics={['Right Panel', 'Collapse Button', 'click']}
                         />
                     </div>
