@@ -32,11 +32,11 @@ limitations under the License.
 2. webkit also supports overflow:overlay where the scrollbars don't take any space
 in the layout but they don't autohide, so do that only on hover
 */
-body.mx_scrollbar_overlay_noautohide .mx_AutoHideScrollbar {
+#matrixchat.mx_scrollbar_overlay_noautohide .mx_AutoHideScrollbar {
     overflow-y: hidden;
 }
 
-body.mx_scrollbar_overlay_noautohide .mx_AutoHideScrollbar:hover {
+#matrixchat.mx_scrollbar_overlay_noautohide .mx_AutoHideScrollbar:hover {
     overflow-y: overlay;
 }
 /*
@@ -47,7 +47,7 @@ is overflowing. This is what Firefox ends up using. Overflow is detected
 in javascript, and adds the mx_AutoHideScrollbar_overflow class to the container.
 This only works in Firefox, which should be fine as this fallback is only needed there.
 */
-body.mx_scrollbar_nooverlay {
+#matrixchat.mx_scrollbar_nooverlay {
     .mx_AutoHideScrollbar {
         overflow-y: hidden;
     }
@@ -77,13 +77,13 @@ body.mx_scrollbar_nooverlay {
     scrollbar-width: thin;
 }
 // or fallback for webkit browsers
-::-webkit-scrollbar {
+#matrixchat::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     background-color: $scrollbar-track-color;
 }
 
-::-webkit-scrollbar-thumb {
+#matrixchat::-webkit-scrollbar-thumb {
     background-color: $scrollbar-thumb-color;
     border-radius: 3px;
 }
