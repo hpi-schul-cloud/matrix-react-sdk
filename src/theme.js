@@ -47,6 +47,12 @@ export class ThemeWatcher {
             this._preferLight.addEventListener('change', this._onChange);
         }
         this._dispatcherRef = dis.register(this._onAction);
+
+        // add link tag lazy
+        const hash = findBundleHash();
+        if (hash) {
+            loadCssFile(hash, 'bundle.css');
+        }
     }
 
     stop() {
@@ -200,29 +206,10 @@ export async function setTheme(theme) {
     }
 
     if (!(stylesheetName in styleElements)) {
-        // > find bundle.js and hash
-        let hash;
-        let b;
-        for (let i = 0; (b = document.getElementsByTagName("script")[i]); i++) {
-            const href = b.getAttribute("src");
-            if (href.indexOf(__webpack_public_path__) === 0) {
-                const match = href.match(/bundles\/(.*)\/bundle\.js$/);
-                if (match) {
-                    hash = match[1];
-                }
-            }
-        }
-
-        // add <link tag lazy
+        const hash = findBundleHash();
+        // add link tag lazy
         if (hash) {
-            const newLink = document.createElement('link');
-            newLink.setAttribute('rel', 'stylesheet');
-            newLink.setAttribute('disabled', '');
-            newLink.setAttribute('title', 'Theme');
-            newLink.setAttribute('href', __webpack_public_path__ + 'bundles/' + hash + '/theme-' + stylesheetName + '.css');
-            console.log(stylesheetName);
-            styleElements[stylesheetName] = newLink;
-            document.head.appendChild(newLink);
+            styleElements[stylesheetName] = loadCssFile(hash, 'theme-' + stylesheetName + '.css');
         } else {
             throw new Error("Unknown theme " + stylesheetName);
         }
@@ -278,4 +265,29 @@ export async function setTheme(theme) {
             switchTheme();
         }
     });
+}
+
+function findBundleHash() {
+    let hash;
+    let b;
+    for (let i = 0; (b = document.getElementsByTagName("script")[i]); i++) {
+        const href = b.getAttribute("src");
+        if (href.indexOf(__webpack_public_path__) === 0) {
+            const match = href.match(/bundles\/(.*)\/bundle\.js$/);
+            if (match) {
+                hash = match[1];
+            }
+        }
+    }
+    return hash;
+}
+
+function loadCssFile(hash, fileName) {
+    const newLink = document.createElement('link');
+    newLink.setAttribute('rel', 'stylesheet');
+    //newLink.setAttribute('disabled', '');
+    newLink.setAttribute('title', 'Theme');
+    newLink.setAttribute('href', __webpack_public_path__ + 'bundles/' + hash + '/' + fileName);
+    document.head.appendChild(newLink);
+    return newLink;
 }
