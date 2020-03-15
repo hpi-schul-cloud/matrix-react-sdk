@@ -738,6 +738,68 @@ export default createReactClass({
                     showCookieBar: false,
                 });
                 break;
+            case 'toggle_room_tab':
+                this._toggleRoomTab();
+                break;
+            case 'toggle_menu_tab':
+                this._toggleMenuTab();
+                break;
+        }
+    },
+
+    // RoomTab
+    _isRoomTabVisible: function() {
+        const rooms = document.getElementsByClassName('mx_RoomView');
+        if (rooms && rooms.length) {
+            return !rooms[0].classList.contains('toggled');
+        }
+        return null;
+    },
+
+    _showRoomTab: function() {
+        if (!this._isRoomTabVisible()) {
+            this._toggleRoomTab();
+        }
+    },
+
+    _hideRoomTab: function() {
+        if (this._isRoomTabVisible()) {
+            this._toggleRoomTab();
+        }
+    },
+
+    _toggleRoomTab: function() {
+        const rooms = document.getElementsByClassName('mx_RoomView');
+        if (rooms && rooms.length) {
+            rooms[0].classList.toggle('toggled');
+        }
+    },
+
+    // MenuTab
+    _isMenuTabVisible: function() {
+        const panel = document.getElementsByClassName('mx_LeftPanel_container');
+        if (panel && panel.length) {
+            return !panel[0].classList.contains('toggled');
+        }
+        return null;
+    },
+
+    _showMenuTab: function() {
+        if (!this._isMenuTabVisible()) {
+            this._toggleMenuTab();
+        }
+    },
+
+    _hideMenuTab: function() {
+        if (this._isMenuTabVisible()) {
+            this._toggleMenuTab();
+        }
+    },
+
+    _toggleMenuTab: function() {
+        const panel = document.getElementsByClassName('mx_LeftPanel_container');
+        if (panel && panel.length) {
+            panel[0].classList.toggle('toggled');
         }
     },
 

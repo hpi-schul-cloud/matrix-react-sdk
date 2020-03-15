@@ -35,6 +35,7 @@ import DMRoomMap from '../../../utils/DMRoomMap';
 import E2EIcon from './E2EIcon';
 import InviteOnlyIcon from './InviteOnlyIcon';
 import HeaderButton from "../right_panel/HeaderButton";
+import dis from "../../../dispatcher";
 
 export default createReactClass({
     displayName: 'RoomHeader',
@@ -152,10 +153,10 @@ export default createReactClass({
     },
 
     _onCollapseClicked() {
-        const rooms = document.getElementsByClassName('mx_RoomView');
-        if (rooms && rooms.length) {
-            rooms[0].classList.toggle('toggled');
-        }
+        const payload = {
+            action: 'toggle_room_tab',
+        };
+        dis.dispatch(payload);
     },
 
     render: function() {

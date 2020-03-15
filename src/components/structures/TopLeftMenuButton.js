@@ -104,10 +104,10 @@ export default class TopLeftMenuButton extends React.Component {
     };
 
     _onCollapseClicked() {
-        const panel = document.getElementsByClassName('mx_LeftPanel_container');
-        if (panel && panel.length) {
-            panel[0].classList.toggle('toggled');
-        }
+        const payload = {
+            action: 'toggle_menu_tab',
+        };
+        dis.dispatch(payload);
     }
 
     render() {
