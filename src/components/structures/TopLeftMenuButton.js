@@ -119,7 +119,7 @@ export default class TopLeftMenuButton extends React.Component {
         if (!this.props.collapsed) {
             // { name }
             nameElement = <div className="mx_TopLeftMenuButton_name">
-                Chat-Menü
+                Messenger
             </div>;
             chevronElement = <span className="mx_TopLeftMenuButton_chevron" />;
         }
