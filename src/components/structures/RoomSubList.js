@@ -181,6 +181,7 @@ export default class RoomSubList extends React.PureComponent {
         dis.dispatch({
             action: 'view_room',
             room_id: roomId,
+            from_click: true,
             clear_search: (ev && (ev.key === Key.ENTER || ev.key === Key.SPACE)),
         });
     };

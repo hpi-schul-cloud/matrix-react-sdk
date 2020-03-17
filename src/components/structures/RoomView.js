@@ -1643,11 +1643,13 @@ export default createReactClass({
         const RoomRecoveryReminder = sdk.getComponent("rooms.RoomRecoveryReminder");
         const ErrorBoundary = sdk.getComponent("elements.ErrorBoundary");
 
+        const toggled = localStorage.getItem("mx_room_toggled") === 'true' ? 'toggled' : null;
+
         if (!this.state.room) {
             const loading = this.state.roomLoading || this.state.peekLoading;
             if (loading) {
                 return (
-                    <div className="mx_RoomView">
+                    <div className={classNames('mx_RoomView', toggled)}>
                         <ErrorBoundary>
                             <RoomPreviewBar
                                 canPreview={false}
@@ -1674,7 +1676,7 @@ export default createReactClass({
                 // We've got to this room by following a link, possibly a third party invite.
                 const roomAlias = this.state.roomAlias;
                 return (
-                    <div className="mx_RoomView">
+                    <div className={classNames('mx_RoomView', toggled)}>
                         <ErrorBoundary>
                             <RoomPreviewBar onJoinClick={this.onJoinButtonClicked}
                                 onForgetClick={this.onForgetClick}
@@ -1719,7 +1721,7 @@ export default createReactClass({
 
                 // We have a regular invite for this room.
                 return (
-                    <div className="mx_RoomView">
+                    <div className={classNames('mx_RoomView', toggled)}>
                         <ErrorBoundary>
                             <RoomPreviewBar
                                 onJoinClick={this.onJoinButtonClicked}
@@ -1830,7 +1832,7 @@ export default createReactClass({
             );
             if (!this.state.canPeek) {
                 return (
-                    <div className="mx_RoomView">
+                    <div className={classNames('mx_RoomView', toggled)}>
                         { previewBar }
                     </div>
                 );
@@ -2020,7 +2022,7 @@ export default createReactClass({
 
         return (
             <RoomContext.Provider value={this.state}>
-                <main className={"mx_RoomView" + (inCall ? " mx_RoomView_inCall" : "")} ref={this._roomView}>
+                <main className={classNames("mx_RoomView" , toggled, (inCall ? " mx_RoomView_inCall" : ""))} ref={this._roomView}>
                     <ErrorBoundary>
                         <RoomHeader
                             room={this.state.room}

@@ -237,8 +237,10 @@ const LeftPanel = createReactClass({
             </div>);
         }
 
+        const toggled = localStorage.getItem("mx_menu_toggled") === 'true' ? 'toggled' : null;
+
         const containerClasses = classNames(
-            "mx_LeftPanel_container", "mx_fadable",
+            "mx_LeftPanel_container", "mx_fadable", toggled,
             {
                 "collapsed": this.props.collapsed,
                 "mx_LeftPanel_container_hasTagPanel": tagPanelEnabled,

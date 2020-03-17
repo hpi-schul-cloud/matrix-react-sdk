@@ -772,6 +772,7 @@ export default createReactClass({
         const rooms = document.getElementsByClassName('mx_RoomView');
         if (rooms && rooms.length) {
             rooms[0].classList.toggle('toggled');
+            localStorage.setItem("mx_room_toggled", rooms[0].classList.contains('toggled'));
         }
     },
 
@@ -800,6 +801,7 @@ export default createReactClass({
         const panel = document.getElementsByClassName('mx_LeftPanel_container');
         if (panel && panel.length) {
             panel[0].classList.toggle('toggled');
+            localStorage.setItem("mx_menu_toggled", panel[0].classList.contains('toggled'));
         }
     },
 
@@ -917,6 +919,10 @@ export default createReactClass({
             console.log(`Switching to room id ${roomInfo.room_id} at event ` +
                 roomInfo.event_id,
             );
+        }
+
+        if (roomInfo.from_click) {
+            this._showRoomTab();
         }
 
         // Wait for the first sync to complete so that if a room does have an alias,
