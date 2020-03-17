@@ -1884,7 +1884,9 @@ export default createReactClass({
         } else {
             subtitle = `${this.subTitleStatus} ${subtitle}`;
         }
-        document.title = `${SdkConfig.get().brand || 'Riot'} ${subtitle}`;
+        if (false) { // TODO: add config to disable title changes
+            document.title = `${SdkConfig.get().brand || 'Riot'} ${subtitle}`;
+        }
     },
 
     updateStatusIndicator: function(state, prevState) {
