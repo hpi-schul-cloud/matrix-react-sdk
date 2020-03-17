@@ -42,7 +42,6 @@
 
 #matrixchat {
     height: 60%;
-    overflow: auto;
     position: fixed;
     bottom: 0;
     right: 5px;
@@ -146,10 +145,11 @@
 // Menu
 .my_HeaderContainer {
     display: flex;
-    flex: 0 0 52px;
+    flex: 0 0 53px;
 
     .mx_TopLeftMenuButton {
         flex: 1;
+        z-index: 2;
     }
 
     .my_CollapseButtons {
@@ -182,6 +182,11 @@
 }
 
 .mx_MatrixToolbar {
-    margin: 2px 312px 2px 2px;
+    right: 0;
+    left: 2px;
+    position: absolute;
+    bottom: 60px;
+    height: 53px;
+    z-index: 1000;
     box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
 }
