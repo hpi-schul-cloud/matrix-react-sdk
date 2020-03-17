@@ -49,9 +49,11 @@ export class ThemeWatcher {
         this._dispatcherRef = dis.register(this._onAction);
 
         // add link tag lazy
-        const hash = findBundleHash();
-        if (hash) {
-            loadCssFile(hash, 'bundle.css');
+        if (!isCssBundleIncluded()) {
+            const hash = findBundleHash();
+            if (hash) {
+                loadCssFile(hash, 'bundle.css');
+            }
         }
     }
 
@@ -272,7 +274,7 @@ function findBundleHash() {
     let b;
     for (let i = 0; (b = document.getElementsByTagName("script")[i]); i++) {
         const href = b.getAttribute("src");
-        if (href.indexOf(__webpack_public_path__) === 0) {
+        if (href && href.indexOf(__webpack_public_path__) === 0) {
             const match = href.match(/bundles\/(.*)\/bundle\.js$/);
             if (match) {
                 hash = match[1];
@@ -290,4 +292,18 @@ function loadCssFile(hash, fileName) {
     newLink.setAttribute('href', __webpack_public_path__ + 'bundles/' + hash + '/' + fileName);
     document.head.appendChild(newLink);
     return newLink;
+}
+
+function isCssBundleIncluded() {
+    let a;
+    for (let i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+        const href = a.getAttribute("href");
+        if (href) {
+            const match = href.match(/bundles\/.*\/bundle\.css$/);
+            if (match) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
