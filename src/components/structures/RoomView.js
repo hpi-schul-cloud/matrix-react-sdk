@@ -1676,7 +1676,7 @@ export default createReactClass({
                 // We've got to this room by following a link, possibly a third party invite.
                 const roomAlias = this.state.roomAlias;
                 return (
-                    <div className={classNames('mx_RoomView', toggled)}>
+                    <div className={classNames('mx_RoomView')}>
                         <ErrorBoundary>
                             <RoomPreviewBar onJoinClick={this.onJoinButtonClicked}
                                 onForgetClick={this.onForgetClick}
@@ -1721,7 +1721,7 @@ export default createReactClass({
 
                 // We have a regular invite for this room.
                 return (
-                    <div className={classNames('mx_RoomView', toggled)}>
+                    <div className={classNames('mx_RoomView')}>
                         <ErrorBoundary>
                             <RoomPreviewBar
                                 onJoinClick={this.onJoinButtonClicked}
@@ -1832,7 +1832,7 @@ export default createReactClass({
             );
             if (!this.state.canPeek) {
                 return (
-                    <div className={classNames('mx_RoomView', toggled)}>
+                    <div className={classNames('mx_RoomView')}>
                         { previewBar }
                     </div>
                 );
