@@ -157,7 +157,7 @@ export default class NotificationsSettingsTab extends React.Component {
                         </AccessibleButton>
                     </div>
                     <div>
-                        <h3>{_t("Set a new custom sound")}</h3>
+                        <span className='mx_SettingsTab_subheading'>{_t("Set a new custom sound")}</span>
                         <form autoComplete="off" noValidate={true}>
                             <input ref={this._soundUpload} className="mx_NotificationSound_soundUpload" type="file" onChange={this._onSoundUploadChanged.bind(this)} accept="audio/*" />
                         </form>
