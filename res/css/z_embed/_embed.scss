@@ -11,6 +11,11 @@
     display: none;
 }
 
+// hide: user name menu icon (while button menu is deactivated)
+.mx_TopLeftMenuButton_chevron {
+    display: none;
+}
+
 // Browser fixes
 .mx_RoomHeader_avatar {
     -ms-flex: inherit;
@@ -165,6 +170,10 @@ img {
             mask-image: url('$(res)/img/feather-customised/grid.svg');
         }
     }
+}
+
+.mx_ContextualMenu_wrapper {
+    min-height: 200px;
 }
 
 .mx_LeftPanel_container {

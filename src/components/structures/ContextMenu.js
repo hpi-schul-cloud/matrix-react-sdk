@@ -267,7 +267,8 @@ export class ContextMenu extends React.Component {
                 adjusted = Math.min(position.top, document.body.clientHeight - contextMenuRect.height - padding);
             }
 
-            position.top = adjusted;
+            //position.top = adjusted;
+            position.bottom = 343;
             chevronOffset.top = Math.max(props.chevronOffset, props.chevronOffset + target - adjusted);
         }
 

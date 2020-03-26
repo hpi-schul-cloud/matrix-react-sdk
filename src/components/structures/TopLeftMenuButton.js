@@ -92,9 +92,12 @@ export default class TopLeftMenuButton extends React.Component {
     }
 
     openMenu = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.setState({ menuDisplayed: true });
+        this._onCollapseClicked();
+
+        // TODO: add feature toggle, and toggle when collapsed
+        // e.preventDefault();
+        // e.stopPropagation();
+        // this.setState({ menuDisplayed: true });
     };
 
     closeMenu = () => {
@@ -141,10 +144,11 @@ export default class TopLeftMenuButton extends React.Component {
         }
 
         return <React.Fragment>
-            <div className="my_HeaderContainer" onClick={this._onCollapseClicked}>
+
+            <div className="my_HeaderContainer">
                 <ContextMenuButton
                     className="mx_TopLeftMenuButton"
-                    onClick={function() {}}
+                    onClick={this.openMenu}
                     inputRef={(r) => this._buttonRef = r}
                     label={_t("Your profile")}
                     isExpanded={this.state.menuDisplayed}
@@ -160,7 +164,8 @@ export default class TopLeftMenuButton extends React.Component {
                     { nameElement }
                     { chevronElement }
                 </ContextMenuButton>
-                <div className="my_CollapseButtons">
+
+                <div className="my_CollapseButtons" onClick={this._onCollapseClicked}>
                     <HeaderButton
                         key="collapseButton"
                         name="collapseButton"
