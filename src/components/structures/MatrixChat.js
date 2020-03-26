@@ -600,9 +600,8 @@ export default createReactClass({
             break;
             case 'view_room_directory': {
                 const RoomDirectory = sdk.getComponent("structures.RoomDirectory");
-                Modal.createTrackedDialog('Room directory', '', RoomDirectory, {
-                    config: this.props.config,
-                }, 'mx_RoomDirectory_dialogWrapper');
+                Modal.createTrackedDialog('Room directory', '', RoomDirectory, {},
+                    'mx_RoomDirectory_dialogWrapper', false, true);
 
                 // View the welcome or home page if we need something to look at
                 this._viewSomethingBehindModal();
@@ -1563,6 +1562,16 @@ export default createReactClass({
             }
         });
 
+        cli.on("crypto.keySignatureUploadFailure", (failures, source, continuation) => {
+            const KeySignatureUploadFailedDialog =
+                sdk.getComponent('views.dialogs.KeySignatureUploadFailedDialog');
+            Modal.createTrackedDialog(
+                'Failed to upload key signatures',
+                'Failed to upload key signatures',
+                KeySignatureUploadFailedDialog,
+                { failures, source, continuation });
+        });
+
         cli.on("crypto.verification.request", request => {
             const isFlagOn = SettingsStore.isFeatureEnabled("feature_cross_signing");
 
@@ -1583,6 +1592,7 @@ export default createReactClass({
                     icon: "verification",
                     props: {request},
                     component: sdk.getComponent("toasts.VerificationRequestToast"),
+                    priority: ToastStore.PRIORITY_REALTIME,
                 });
             }
         });
@@ -1981,7 +1991,10 @@ export default createReactClass({
             // secret storage.
             SettingsStore.setFeatureEnabled("feature_cross_signing", true);
             this.setStateForNewView({ view: VIEWS.COMPLETE_SECURITY });
-        } else if (SettingsStore.isFeatureEnabled("feature_cross_signing")) {
+        } else if (
+            SettingsStore.isFeatureEnabled("feature_cross_signing") &&
+            await cli.doesServerSupportUnstableFeature("org.matrix.e2e_cross_signing")
+        ) {
             // This will only work if the feature is set to 'enable' in the config,
             // since it's too early in the lifecycle for users to have turned the
             // labs flag on.
