@@ -41,12 +41,13 @@
 }
 
 #matrixchat {
-    height: 60%;
+    height: 0;
     position: fixed;
     bottom: 0;
     right: 5px;
     display: flex;
     background: transparent;
+    box-sizing: content-box;
     max-width: 90%;
 
     @media (min-width: 1600px) {
@@ -95,6 +96,7 @@
 }
 
 .mx_RoomView {
+    min-height: 600px;
     margin-right: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
 
@@ -119,7 +121,8 @@
     transition: all 200ms;
 
     &.toggled {
-        height: 53px !important;
+        height: 53px;
+        min-height: 53px;
         overflow: hidden !important;
         width: 300px;
 
@@ -137,6 +140,15 @@
             &::before {
                 display: none;
             }
+        }
+
+        // fill available room to be clickable
+        .mx_RoomHeader_name {
+            flex-grow: 1;
+        }
+        // avoid to enter text in toggled input
+        .mx_BasicMessageComposer_input {
+            display: none;
         }
     }
 }
