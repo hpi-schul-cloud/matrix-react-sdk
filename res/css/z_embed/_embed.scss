@@ -36,7 +36,7 @@ img {
     height: 0;
     position: fixed;
     bottom: 0;
-    right: 5px;
+    right: 8px;
     display: flex;
     background: transparent;
     box-sizing: content-box;
@@ -188,6 +188,12 @@ img {
         width: 300px;
 
         .mx_LeftPanel {
+            overflow: hidden;
+        }
+
+        // fix for firefox
+        .mx_LeftPanel_exploreAndFilterRow {
+            height: 0;
             overflow: hidden;
         }
     }
