@@ -1310,10 +1310,18 @@ export default createReactClass({
     },
 
     _viewLastRoom: function() {
-        dis.dispatch({
-            action: 'view_room',
-            room_id: localStorage.getItem('mx_last_room_id'),
-        });
+        const storedIdentifier = localStorage.getItem('mx_last_room_id');
+        if (storedIdentifier.indexOf('!') === 0) {
+            dis.dispatch({
+                action: 'view_room',
+                room_id: storedIdentifier,
+            });
+        } else {
+            dis.dispatch({
+                action: 'view_room',
+                room_alias: storedIdentifier,
+            });
+        }
     },
 
     /**
