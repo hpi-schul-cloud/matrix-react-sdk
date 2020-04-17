@@ -324,6 +324,10 @@ export class ContextMenu extends React.Component {
             );
         }
 
+        // move context menu
+        position.top -= 280;
+        position.left -= 260;
+
         return (
             <div className="mx_ContextualMenu_wrapper" style={{...position, ...wrapperStyle}} onKeyDown={this._onKeyDown}>
                 <div className={menuClasses} style={menuStyle} ref={this.collectContextMenuRect} role={this.props.managed ? "menu" : undefined}>
