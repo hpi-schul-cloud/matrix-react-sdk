@@ -509,6 +509,11 @@ export default class WidgetUtils {
             // really just for backwards compatibility and to appease the spec.
             baseUrl = "https://riot.im/app/";
         }
+
+        if (__webpack_public_path__) {
+            baseUrl = __webpack_public_path__;
+        }
+
         const url = new URL("jitsi.html#" + queryString, baseUrl); // this strips hash fragment from baseUrl
         return url.href;
     }

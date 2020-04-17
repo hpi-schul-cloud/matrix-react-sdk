@@ -25,6 +25,9 @@ import { _t } from '../../languageHandler';
 import dis from "../../dispatcher";
 import {ContextMenu, ContextMenuButton} from "./ContextMenu";
 import HeaderButton from "../views/right_panel/HeaderButton";
+import * as RoomNotifs from "../../RoomNotifs";
+import * as FormattingUtils from "../../utils/FormattingUtils";
+import * as sdk from "../../index";
 
 const AVATAR_SIZE = 28;
 
@@ -79,6 +82,10 @@ export default class TopLeftMenuButton extends React.Component {
         if (payload.action === "toggle_top_left_menu") {
             if (this._buttonRef) this._buttonRef.click();
         }
+
+        if (payload.action === "sync_state") {
+            this.forceUpdate();
+        }
     };
 
     _getDisplayName() {
@@ -115,6 +122,7 @@ export default class TopLeftMenuButton extends React.Component {
 
     render() {
         const cli = MatrixClientPeg.get().getUserId();
+        const AccessibleButton = sdk.getComponent('elements.AccessibleButton');
 
         const name = this._getDisplayName();
         let nameElement;
@@ -125,6 +133,23 @@ export default class TopLeftMenuButton extends React.Component {
                 Messenger
             </div>;
             chevronElement = <span className="mx_TopLeftMenuButton_chevron" />;
+        }
+
+        const notifications = RoomNotifs.countRoomsWithNotif(MatrixClientPeg.get().getRooms());
+
+        let badge;
+        if (notifications.count) {
+            badge = (
+                <AccessibleButton
+                    className="my_Notification_badge mx_RoomSubList_badge mx_RoomSubList_badgeHighlight"
+                    onClick={this._onCollapseClicked}
+                    aria-label={_t("Jump to first unread room.")}
+                >
+                    <div>
+                        { FormattingUtils.formatCount(notifications.totalCount) }
+                    </div>
+                </AccessibleButton>
+            );
         }
 
         let contextMenu;
@@ -175,6 +200,7 @@ export default class TopLeftMenuButton extends React.Component {
                         analytics={['Left Panel', 'Collapse Button', 'click']}
                     />
                 </div>
+                { badge }
             </div>
             { contextMenu }
         </React.Fragment>;

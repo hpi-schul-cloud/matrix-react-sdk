@@ -47,12 +47,13 @@ export function countRoomsWithNotif(rooms) {
 
         if (badges) {
             result.count++;
+            result.totalCount += (notificationCount ? notificationCount : 0) + (isInvite ? 1 : 0);
             if (highlight) {
                 result.highlight = true;
             }
         }
         return result;
-    }, {count: 0, highlight: false});
+    }, {count: 0, totalCount: 0, highlight: false});
 }
 
 export function aggregateNotificationCount(rooms) {

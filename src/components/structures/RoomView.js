@@ -55,6 +55,7 @@ import RightPanelStore from "../../stores/RightPanelStore";
 import {haveTileForEvent} from "../views/rooms/EventTile";
 import RoomContext from "../../contexts/RoomContext";
 import MatrixClientContext from "../../contexts/MatrixClientContext";
+import * as FormattingUtils from "../../utils/FormattingUtils";
 
 const DEBUG = false;
 let debuglog = function() {};
@@ -672,7 +673,8 @@ export default createReactClass({
 
         if (ev.getSender() !== this.context.credentials.userId) {
             // update unread count when scrolled up
-            if (!this.state.searchResults && this.state.atEndOfLiveTimeline) {
+            const toggled = localStorage.getItem("mx_room_toggled") === 'true';
+            if (!this.state.searchResults && this.state.atEndOfLiveTimeline && !toggled) {
                 // no change
             } else if (!shouldHideEvent(ev)) {
                 this.setState((state, props) => {
@@ -1091,7 +1093,8 @@ export default createReactClass({
     },
 
     onMessageListScroll: function(ev) {
-        if (this._messagePanel.isAtEndOfLiveTimeline()) {
+        const toggled = localStorage.getItem("mx_room_toggled") === 'true';
+        if (this._messagePanel.isAtEndOfLiveTimeline() && !toggled) {
             this.setState({
                 numUnreadMessages: 0,
                 atEndOfLiveTimeline: true,
@@ -1648,6 +1651,21 @@ export default createReactClass({
 
         const toggled = localStorage.getItem("mx_room_toggled") === 'true' ? 'toggled' : null;
 
+        let badge;
+        if (this.state.numUnreadMessages) {
+            badge = (
+                <AccessibleButton
+                    className="my_Notification_badge mx_RoomSubList_badge mx_RoomSubList_badgeHighlight"
+                    onClick={() => {}}
+                    aria-label={_t("Scroll to most recent messages")}
+                >
+                    <div>
+                        { FormattingUtils.formatCount(this.state.numUnreadMessages) }
+                    </div>
+                </AccessibleButton>
+            );
+        }
+
         if (!this.state.room) {
             const loading = this.state.roomLoading || this.state.peekLoading;
             if (loading) {
@@ -2043,6 +2061,7 @@ export default createReactClass({
                             onLeaveClick={(myMembership === "join") ? this.onLeaveClick : null}
                             e2eStatus={this.state.e2eStatus}
                         />
+                        {badge}
                         <MainSplit
                             panel={rightPanel}
                             resizeNotifier={this.props.resizeNotifier}
