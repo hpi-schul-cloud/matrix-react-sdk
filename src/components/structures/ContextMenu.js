@@ -325,7 +325,11 @@ export class ContextMenu extends React.Component {
         }
 
         // move context menu
-        position.top -= 280;
+        if (position.top) {
+            position.top -= (280 + window.scrollY);
+        } else {
+            position.bottom += window.scrollY;
+        }
         position.left -= 260;
 
         return (
