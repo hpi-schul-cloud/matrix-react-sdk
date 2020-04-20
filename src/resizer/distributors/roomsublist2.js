@@ -146,7 +146,7 @@ export class Layout {
     }
 
     _sectionHeight(count) {
-        return 36 + (count === 0 ? 0 : 4 + (count * 34));
+        return 40 + (count === 0 ? 0 : 4 + (count * 40));
     }
 
     _getMinHeight(i) {
