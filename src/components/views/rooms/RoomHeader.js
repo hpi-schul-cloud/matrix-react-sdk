@@ -159,6 +159,13 @@ export default createReactClass({
         dis.dispatch(payload);
     },
 
+    _viewHome() {
+        const payload = {
+            action: 'view_home_page',
+        };
+        dis.dispatch(payload);
+    },
+
     render: function() {
         const RoomAvatar = sdk.getComponent("avatars.RoomAvatar");
 
@@ -339,6 +346,15 @@ export default createReactClass({
                             onClick={this._onCollapseClicked}
                             isHighlighted={false}
                             analytics={['Right Panel', 'Collapse Button', 'click']}
+                        />
+
+                        <HeaderButton
+                            key="closeButton"
+                            name="closeButton"
+                            title={_t('Close')}
+                            onClick={this._viewHome}
+                            isHighlighted={false}
+                            analytics={['Right Panel', 'Close Button', 'click']}
                         />
                     </div>
                 </div>

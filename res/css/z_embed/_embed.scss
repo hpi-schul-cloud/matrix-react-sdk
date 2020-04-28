@@ -123,6 +123,10 @@ img {
         padding-left: 4px;
     }
 
+    .mx_HeaderButtons::before {
+        margin-right: 10px;
+    }
+
     .my_CollapseButtons {
         display: flex;
 
@@ -130,13 +134,23 @@ img {
             content: "";
             background-color: #91A1C0;
             opacity: 0.5;
-            margin: 0 15px;
+            margin: 0 10px 0 15px;
             border-radius: 1px;
             width: 1px;
         }
 
-        .mx_RightPanel_collapseButton::before {
-            mask-image: url('$(res)/img/feather-customised/grid.svg');
+        .mx_RightPanel_collapseButton {
+            display: none;
+
+            &::before {
+                mask-image: url('$(res)/img/feather-customised/grid.svg');
+            }
+        }
+
+        .mx_RightPanel_closeButton::before {
+            height: 16px;
+            margin-top: 2px;
+            mask-image: url('$(res)/img/feather-customised/cancel.svg');
         }
     }
 
@@ -161,6 +175,14 @@ img {
             margin-left: auto;
 
             &::before {
+                display: none;
+            }
+
+            .mx_RightPanel_collapseButton {
+                display: block;
+            }
+
+            .mx_RightPanel_closeButton {
                 display: none;
             }
         }
