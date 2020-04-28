@@ -181,6 +181,14 @@ img {
     }
 }
 
+.mx_MemberInfo_avatar {
+    background: none;
+
+    > img {
+        max-height: 15vh;
+    }
+}
+
 
 // Menu
 .my_HeaderContainer {
