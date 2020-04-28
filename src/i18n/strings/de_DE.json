@@ -1742,7 +1742,7 @@
     "%(senderName)s changed a rule that was banning users matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
     "%(senderName)s changed a rule that was banning rooms matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel für Räume von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
 
-    "%(creator)s created and configured the room.": "%(creator) hat den Raum erstellt und konfiguriert.",
+    "%(creator)s created and configured the room.": "%(creator)s hat den Raum erstellt und konfiguriert.",
     "Collapse": "Minimieren",
 
     "Report Content": "Inhalt melden",
