@@ -322,7 +322,7 @@ export default createReactClass({
         if (!mxEvent.isRedacted()) {
             if (eventStatus === EventStatus.NOT_SENT) {
                 resendButton = (
-                    <MenuItem className="mx_MessageContextMenu_field" onClick={this.onResendClick}>
+                    <MenuItem className="mx_MessageContextMenu_field" id="button-resend" onClick={this.onResendClick}>
                         { _t('Resend') }
                     </MenuItem>
                 );
@@ -330,7 +330,7 @@ export default createReactClass({
 
             if (editStatus === EventStatus.NOT_SENT) {
                 resendEditButton = (
-                    <MenuItem className="mx_MessageContextMenu_field" onClick={this.onResendEditClick}>
+                    <MenuItem className="mx_MessageContextMenu_field" id="button-resend-edit" onClick={this.onResendEditClick}>
                         { _t('Resend edit') }
                     </MenuItem>
                 );
@@ -338,7 +338,7 @@ export default createReactClass({
 
             if (unsentReactionsCount !== 0) {
                 resendReactionsButton = (
-                    <MenuItem className="mx_MessageContextMenu_field" onClick={this.onResendReactionsClick}>
+                    <MenuItem className="mx_MessageContextMenu_field" id="button-resend-reactions" onClick={this.onResendReactionsClick}>
                         { _t('Resend %(unsentCount)s reaction(s)', {unsentCount: unsentReactionsCount}) }
                     </MenuItem>
                 );
@@ -347,7 +347,7 @@ export default createReactClass({
 
         if (redactStatus === EventStatus.NOT_SENT) {
             resendRedactionButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onResendRedactionClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-resend-removal" onClick={this.onResendRedactionClick}>
                     { _t('Resend removal') }
                 </MenuItem>
             );
@@ -355,7 +355,7 @@ export default createReactClass({
 
         if (isSent && this.state.canRedact) {
             redactButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onRedactClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-remove" onClick={this.onRedactClick}>
                     { _t('Remove') }
                 </MenuItem>
             );
@@ -363,7 +363,7 @@ export default createReactClass({
 
         if (allowCancel) {
             cancelButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onCancelSendClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-cancel-sending" onClick={this.onCancelSendClick}>
                     { _t('Cancel Sending') }
                 </MenuItem>
             );
@@ -371,14 +371,14 @@ export default createReactClass({
 
         if (isContentActionable(mxEvent)) {
             forwardButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onForwardClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-forward" onClick={this.onForwardClick}>
                     { _t('Forward Message') }
                 </MenuItem>
             );
 
             if (this.state.canPin) {
                 pinButton = (
-                    <MenuItem className="mx_MessageContextMenu_field" onClick={this.onPinClick}>
+                    <MenuItem className="mx_MessageContextMenu_field" id="button-pin" onClick={this.onPinClick}>
                         { this._isPinned() ? _t('Unpin Message') : _t('Pin Message') }
                     </MenuItem>
                 );
@@ -386,14 +386,14 @@ export default createReactClass({
         }
 
         const viewSourceButton = (
-            <MenuItem className="mx_MessageContextMenu_field" onClick={this.onViewSourceClick}>
+            <MenuItem className="mx_MessageContextMenu_field" id="button-source" onClick={this.onViewSourceClick}>
                 { _t('View Source') }
             </MenuItem>
         );
 
         if (mxEvent.getType() !== mxEvent.getWireType()) {
             viewClearSourceButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onViewClearSourceClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-source-decrypt" onClick={this.onViewClearSourceClick}>
                     { _t('View Decrypted Source') }
                 </MenuItem>
             );
@@ -402,7 +402,7 @@ export default createReactClass({
         if (this.props.eventTileOps) {
             if (this.props.eventTileOps.isWidgetHidden()) {
                 unhidePreviewButton = (
-                    <MenuItem className="mx_MessageContextMenu_field" onClick={this.onUnhidePreviewClick}>
+                    <MenuItem className="mx_MessageContextMenu_field" id="button-unhide-preview" onClick={this.onUnhidePreviewClick}>
                         { _t('Unhide Preview') }
                     </MenuItem>
                 );
@@ -422,6 +422,7 @@ export default createReactClass({
                 href={permalink}
                 target="_blank"
                 rel="noreferrer noopener"
+                id="button-share"
             >
                 { mxEvent.isRedacted() || mxEvent.getType() !== 'm.room.message'
                     ? _t('Share Permalink') : _t('Share Message') }
@@ -430,7 +431,7 @@ export default createReactClass({
 
         if (this.props.eventTileOps) { // this event is rendered using TextualBody
             quoteButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onQuoteClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-quote" onClick={this.onQuoteClick}>
                     { _t('Quote') }
                 </MenuItem>
             );
@@ -449,6 +450,7 @@ export default createReactClass({
                     rel="noreferrer noopener"
                     onClick={this.closeMenu}
                     href={mxEvent.event.content.external_url}
+                    id="button-source-url"
                 >
                     { _t('Source URL') }
                 </MenuItem>
@@ -457,7 +459,7 @@ export default createReactClass({
 
         if (this.props.collapseReplyThread) {
             collapseReplyThread = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onCollapseReplyThreadClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-collapse-thread" onClick={this.onCollapseReplyThreadClick}>
                     { _t('Collapse Reply Thread') }
                 </MenuItem>
             );
@@ -466,7 +468,7 @@ export default createReactClass({
         let e2eInfo;
         if (this.props.e2eInfoCallback) {
             e2eInfo = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.e2eInfoClicked}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-e2e" onClick={this.e2eInfoClicked}>
                     { _t('End-to-end encryption information') }
                 </MenuItem>
             );
@@ -475,7 +477,7 @@ export default createReactClass({
         let reportEventButton;
         if (mxEvent.getSender() !== me) {
             reportEventButton = (
-                <MenuItem className="mx_MessageContextMenu_field" onClick={this.onReportEventClick}>
+                <MenuItem className="mx_MessageContextMenu_field" id="button-report" onClick={this.onReportEventClick}>
                     { _t('Report Content') }
                 </MenuItem>
             );
