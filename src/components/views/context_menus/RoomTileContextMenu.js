@@ -377,14 +377,15 @@ export default createReactClass({
 
     render: function() {
         const myMembership = this.props.room.getMyMembership();
+        const isSyncedRoom = !!this.props.room.currentState.events['m.room.sync'];
 
         switch (myMembership) {
             case 'join':
                 return <div>
                     { this._renderNotifMenu() }
                     <hr className="mx_RoomTileContextMenu_separator" role="separator" />
-                    { this._renderLeaveMenu(myMembership) }
-                    <hr className="mx_RoomTileContextMenu_separator" role="separator" />
+                    { !isSyncedRoom && this._renderLeaveMenu(myMembership) }
+                    { !isSyncedRoom && '<hr className="mx_RoomTileContextMenu_separator" role="separator" />' }
                     { this._renderRoomTagMenu() }
                     <hr className="mx_RoomTileContextMenu_separator" role="separator" />
                     { this._renderSettingsMenu() }
