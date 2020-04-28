@@ -385,7 +385,7 @@ export default createReactClass({
                     { this._renderNotifMenu() }
                     <hr className="mx_RoomTileContextMenu_separator" role="separator" />
                     { !isSyncedRoom && this._renderLeaveMenu(myMembership) }
-                    { !isSyncedRoom && '<hr className="mx_RoomTileContextMenu_separator" role="separator" />' }
+                    { !isSyncedRoom && (<hr className="mx_RoomTileContextMenu_separator" role="separator" />)}
                     { this._renderRoomTagMenu() }
                     <hr className="mx_RoomTileContextMenu_separator" role="separator" />
                     { this._renderSettingsMenu() }
