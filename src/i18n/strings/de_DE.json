@@ -1742,6 +1742,14 @@
     "%(senderName)s changed a rule that was banning users matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
     "%(senderName)s changed a rule that was banning rooms matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel für Räume von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
 
+    "%(creator)s created and configured the room.": "%(creator) hat den Raum erstellt und konfiguriert.",
+    "Collapse": "Minimieren",
+
+    "Report Content": "Inhalt melden",
+    "Report Content to Your Homeserver Administrator": "Inhalt an deinen Schul-Cloud Administrator melden",
+    "Reporting this message will send its unique 'event ID' to the administrator of your homeserver. If messages in this room are encrypted, your homeserver administrator will not be able to read the message text or view any files or images.": "Melde diese Nachricht an die Schul-Cloud Administratoren. Diese könenn die Nachricht prüfen und werden sie gegebenenfalls löschen.",
+    "Send report": "Abschicken",
+
     "Frequently Used": "Oft genutzt",
     "Smileys & People": "Smileys & Menschen",
     "Animals & Nature": "Tiere & Natur",
