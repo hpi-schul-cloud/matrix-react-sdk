@@ -14,7 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import EMOJIBASE from 'emojibase-data/en/compact.json';
+// TODO: selct language dynamically
+import EMOJIBASE from 'emojibase-data/de/compact.json';
 
 // The unicode is stored without the variant selector
 const UNICODE_TO_EMOJI = new Map(); // not exported as gets for it are handled by getEmojiFromUnicode

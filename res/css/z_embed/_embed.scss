@@ -232,6 +232,10 @@ img {
             overflow: hidden;
         }
 
+        .mx_RoomBreadcrumbs {
+            display: none;
+        }
+
         // fix for firefox
         .mx_LeftPanel_exploreAndFilterRow {
             height: 0;

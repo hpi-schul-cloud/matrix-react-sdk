@@ -462,7 +462,7 @@
     "You are now ignoring %(userId)s": "%(userId)s wird jetzt ignoriert",
     "You are no longer ignoring %(userId)s": "%(userId)s wird nicht mehr ignoriert",
     "Message removed by %(userId)s": "Nachricht wurde von %(userId)s entfernt",
-    "Leave": "Verlassen",
+    "Leave": "Raum Verlassen",
     "Failed to invite the following users to %(groupId)s:": "Die folgenden Benutzer konnten nicht in die Gruppe %(groupId)s eingeladen werden:",
     "Leave %(groupName)s?": "%(groupName)s verlassen?",
     "Add a Room": "Raum hinzufügen",
@@ -1740,5 +1740,17 @@
     "Start chatting": "Chat starten",
     "Reject & Ignore user": "Ablehnen & Nutzer ignorieren",
     "%(senderName)s changed a rule that was banning users matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
-    "%(senderName)s changed a rule that was banning rooms matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel für Räume von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s"
+    "%(senderName)s changed a rule that was banning rooms matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel für Räume von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
+
+    "Frequently Used": "Oft genutzt",
+    "Smileys & People": "Smileys & Menschen",
+    "Animals & Nature": "Tiere & Natur",
+    "Food & Drink": "Essen & Trinken",
+    "Activities": "Aktivitäten",
+    "Travel & Places": "Reisen & Ort",
+    "Objects": "Objekte",
+    "Symbols": "Symbole",
+    "Flags": "Flaggen",
+    "Quick Reactions": "Schnellauswahl",
+    "Cancel search": "Suche abbrechen"
 }

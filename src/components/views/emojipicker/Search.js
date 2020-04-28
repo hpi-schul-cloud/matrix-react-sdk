@@ -48,7 +48,7 @@ class Search extends React.PureComponent {
 
         return (
             <div className="mx_EmojiPicker_search">
-                <input autoFocus type="text" placeholder="Search" value={this.props.query}
+                <input autoFocus type="text" placeholder={_t('Search')} value={this.props.query}
                     onChange={ev => this.props.onChange(ev.target.value)} ref={this.inputRef} />
                 {rightButton}
             </div>
