@@ -160,6 +160,7 @@ export default createReactClass({
     },
 
     _viewHome() {
+        localStorage.setItem('mx_last_room_id', '');
         const payload = {
             action: 'view_home_page',
         };

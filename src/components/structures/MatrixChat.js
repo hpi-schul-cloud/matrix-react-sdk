@@ -1302,9 +1302,11 @@ export default createReactClass({
             } else if (getHomePageUrl(this.props.config)) {
                 dis.dispatch({action: 'view_home_page'});
             } else {
-                this.firstSyncPromise.promise.then(() => {
-                    dis.dispatch({action: 'view_next_room'});
-                });
+                dis.dispatch({action: 'view_home_page'});
+                // Don't open room if no room was opened before
+                // this.firstSyncPromise.promise.then(() => {
+                //     dis.dispatch({action: 'view_next_room'});
+                // });
             }
         }
     },
