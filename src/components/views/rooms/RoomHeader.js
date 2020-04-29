@@ -247,7 +247,7 @@ export default createReactClass({
                 width={avatarSize}
                 height={avatarSize}
                 oobData={this.props.oobData}
-                viewAvatarOnClick={true} />);
+                viewAvatarOnClick={false} />);
         }
 
         if (this.props.onSettingsClick) {

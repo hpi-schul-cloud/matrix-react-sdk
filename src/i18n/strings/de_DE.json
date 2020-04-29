@@ -1626,7 +1626,8 @@
     "Create a private room": "Erstelle einen privaten Raum",
     "Topic (optional)": "Thema (optional)",
     "Make this room public": "Machen Sie diesen Raum öffentlich",
-    "Hide advanced": "Fortgeschrittenes ausblenden",
+    "Show advanced": "Weitere Optionen anzeigen",
+    "Hide advanced": "Weitere Optionen ausblenden",
     "Block users on other matrix homeservers from joining this room (This setting cannot be changed later!)": "Hindere Benutzer auf anderen Matrix-Homeservern daran, diesem Raum beizutreten (Diese Einstellung kann später nicht geändert werden!)",
     "Session name": "Name der Sitzung",
     "This will allow you to return to your account after signing out, and sign in on other sessions.": "So können Sie nach der Abmeldung zu Ihrem Konto zurückkehren und sich bei anderen Sitzungen anmelden.",
@@ -1742,6 +1743,7 @@
     "%(senderName)s changed a rule that was banning users matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
     "%(senderName)s changed a rule that was banning rooms matching %(oldGlob)s to matching %(newGlob)s for %(reason)s": "%(senderName)s ändert eine Ausschluss-Regel für Räume von %(oldGlob)s nach %(newGlob)s, wegen %(reason)s",
 
+    "You were kicked from %(roomName)s by %(memberName)s": "%(memberName)s hat dich aus Raum %(roomName)s entfernt.",
     "%(creator)s created and configured the room.": "%(creator)s hat den Raum erstellt und konfiguriert.",
     "Collapse": "Minimieren",
 

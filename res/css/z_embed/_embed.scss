@@ -295,3 +295,72 @@ img {
     left: auto;
     right: 1px;
 }
+
+// small screens
+// > menu
+@media (max-width: 1000px) {
+    .my_HeaderContainer .my_CollapseButtons {
+        display: none;
+    }
+    .mx_RoomTile_nameContainer {
+        display: none;
+    }
+    .mx_LeftPanel_container.collapsed.mx_LeftPanel_container_hasTagPanel {
+        flex: 0;
+    }
+}
+
+// > room view
+@media (max-width: 700px) {
+    #matrixchat {
+        left: 8px;
+        max-width: none;
+    }
+    .mx_RoomHeader_wrapper {
+        overflow: hidden;
+    }
+
+    // full width content
+    .mx_RoomView_timeline_rr_enabled .mx_EventTile_line,
+    .mx_RoomView_timeline_rr_enabled .mx_EventTile_reply {
+        margin-right: 0;
+    }
+    .mx_EventListSummary_toggle {
+        display: none;
+    }
+    .mx_EventTile .mx_SenderProfile,
+    .mx_EventTile_line,
+    .mx_EventTile_reply {
+        padding-left: 45px;
+    }
+    .mx_RoomView_MessageList {
+        padding: 5px;
+    }
+    .mx_EventListSummary .mx_EventTile_line {
+        padding-left: 65px;
+    }
+    .mx_EventListSummary_avatars {
+        margin-left: -20px;
+    }
+    .mx_EventTile.mx_EventTile_info .mx_EventTile_avatar {
+        left: 45px;
+    }
+    .mx_EventTile_info .mx_EventTile_line {
+        padding-left: 65px;
+    }
+
+    // align input
+    .mx_MessageComposer_wrapper {
+        padding-left: 50px;
+    }
+    .mx_MessageComposer .mx_MessageComposer_avatar {
+        left: 14px;
+    }
+}
+
+// > height
+@media (max-height: 600px) {
+    .mx_RoomView {
+        min-height: calc(100vh - 8px);
+    }
+}
