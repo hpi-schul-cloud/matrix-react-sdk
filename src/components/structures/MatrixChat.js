@@ -756,12 +756,14 @@ export default createReactClass({
     },
 
     _showRoomTab: function() {
+        localStorage.setItem("mx_room_toggled", false); // update state if on home
         if (!this._isRoomTabVisible()) {
             this._toggleRoomTab();
         }
     },
 
     _hideRoomTab: function() {
+        localStorage.setItem("mx_room_toggled", true); // update state if on home
         if (this._isRoomTabVisible()) {
             this._toggleRoomTab();
         }
