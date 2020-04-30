@@ -239,7 +239,7 @@ export default createReactClass({
         }
         const topicElement =
             <div className="mx_RoomHeader_topic" onClick={this._onCollapseClicked} ref={this._topic} title={topic} dir="auto">{ topic }</div>;
-        const avatarSize = 28;
+        const avatarSize = 36;
         let roomAvatar;
         if (this.props.room) {
             roomAvatar = (<RoomAvatar

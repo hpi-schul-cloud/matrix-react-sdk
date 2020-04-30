@@ -1746,6 +1746,9 @@
     "You were kicked from %(roomName)s by %(memberName)s": "%(memberName)s hat dich aus Raum %(roomName)s entfernt.",
     "%(creator)s created and configured the room.": "%(creator)s hat den Raum erstellt und konfiguriert.",
     "Collapse": "Minimieren",
+    "Recent Conversations": "Letzte Unterhaltungen",
+    "Show less": "Mehr anzeigen",
+    "Show more": "Weniger anzeigen",
 
     "Report Content": "Inhalt melden",
     "Report Content to Your Homeserver Administrator": "Inhalt an deinen Schul-Cloud Administrator melden",
