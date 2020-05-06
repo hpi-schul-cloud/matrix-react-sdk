@@ -1747,8 +1747,8 @@
     "%(creator)s created and configured the room.": "%(creator)s hat den Raum erstellt und konfiguriert.",
     "Collapse": "Minimieren",
     "Recent Conversations": "Letzte Unterhaltungen",
-    "Show less": "Mehr anzeigen",
-    "Show more": "Weniger anzeigen",
+    "Show less": "Weniger anzeigen",
+    "Show more": "Mehr anzeigen",
 
     "Report Content": "Inhalt melden",
     "Report Content to Your Homeserver Administrator": "Inhalt an deinen Schul-Cloud Administrator melden",

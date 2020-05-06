@@ -26,6 +26,7 @@ import * as VectorConferenceHandler from '../../VectorConferenceHandler';
 import SettingsStore from '../../settings/SettingsStore';
 import {_t} from "../../languageHandler";
 import Analytics from "../../Analytics";
+import ContentMessages from "../../ContentMessages";
 
 
 const LeftPanel = createReactClass({
@@ -41,10 +42,12 @@ const LeftPanel = createReactClass({
         return {
             searchFilter: '',
             breadcrumbs: false,
+            toggled: window.localStorage.getItem("mx_menu_toggled") === 'true',
         };
     },
 
     componentWillMount: function() {
+        this.dispatcherRef = dis.register(this.onAction);
         this.focusedElement = null;
 
         this._breadcrumbsWatcherRef = SettingsStore.watchSetting(
@@ -62,6 +65,18 @@ const LeftPanel = createReactClass({
         SettingsStore.unwatchSetting(this._tagPanelWatcherRef);
     },
 
+    onAction: function(payload) {
+        switch (payload.action) {
+            case 'toggle_menu_tab':
+                const newToggleState = !this.state.toggled;
+                this.setState({
+                    toggled: newToggleState,
+                });
+                window.localStorage.setItem("mx_menu_toggled", newToggleState);
+                break;
+        }
+    },
+
     shouldComponentUpdate: function(nextProps, nextState) {
         // MatrixChat will update whenever the user switches
         // rooms, but propagating this change all the way down
@@ -76,6 +91,9 @@ const LeftPanel = createReactClass({
             return true;
         }
 
+        if (this.state.toggled !== nextState.toggled) {
+            return true;
+        }
         if (this.state.searchFilter !== nextState.searchFilter) {
             return true;
         }
@@ -237,10 +255,10 @@ const LeftPanel = createReactClass({
             </div>);
         }
 
-        const toggled = localStorage.getItem("mx_menu_toggled") === 'true' ? 'toggled' : null;
+        const toggledClass = this.state.toggled ? 'toggled' : null;
 
         const containerClasses = classNames(
-            "mx_LeftPanel_container", "mx_fadable", toggled,
+            "mx_LeftPanel_container", "mx_fadable", toggledClass,
             {
                 "collapsed": this.props.collapsed,
                 "mx_LeftPanel_container_hasTagPanel": tagPanelEnabled,
@@ -274,26 +292,34 @@ const LeftPanel = createReactClass({
             breadcrumbs = (<RoomBreadcrumbs collapsed={this.props.collapsed} />);
         }
 
+        const callPreview = (<CallPreview ConferenceHandler={VectorConferenceHandler} />);
+        const exploreAndFilter = (
+            <div className="mx_LeftPanel_exploreAndFilterRow" onKeyDown={this._onKeyDown} onFocus={this._onFocus} onBlur={this._onBlur}>
+                { exploreButton }
+                { searchBox }
+            </div>
+        );
+        const roomList = (
+            <RoomList
+                onKeyDown={this._onKeyDown}
+                onFocus={this._onFocus}
+                onBlur={this._onBlur}
+                ref={this.collectRoomList}
+                resizeNotifier={this.props.resizeNotifier}
+                collapsed={this.props.collapsed}
+                searchFilter={this.state.searchFilter}
+                ConferenceHandler={VectorConferenceHandler} />
+        );
+
         return (
             <div className={containerClasses}>
                 { tagPanelContainer }
                 <aside className="mx_LeftPanel dark-panel">
                     <TopLeftMenuButton collapsed={this.props.collapsed} />
-                    { breadcrumbs }
-                    <CallPreview ConferenceHandler={VectorConferenceHandler} />
-                    <div className="mx_LeftPanel_exploreAndFilterRow" onKeyDown={this._onKeyDown} onFocus={this._onFocus} onBlur={this._onBlur}>
-                        { exploreButton }
-                        { searchBox }
-                    </div>
-                    <RoomList
-                        onKeyDown={this._onKeyDown}
-                        onFocus={this._onFocus}
-                        onBlur={this._onBlur}
-                        ref={this.collectRoomList}
-                        resizeNotifier={this.props.resizeNotifier}
-                        collapsed={this.props.collapsed}
-                        searchFilter={this.state.searchFilter}
-                        ConferenceHandler={VectorConferenceHandler} />
+                    { !this.state.toggled && breadcrumbs }
+                    { !this.state.toggled && callPreview }
+                    { !this.state.toggled && exploreAndFilter }
+                    { !this.state.toggled && roomList }
                 </aside>
             </div>
         );

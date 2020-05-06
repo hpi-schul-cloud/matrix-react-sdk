@@ -737,72 +737,6 @@ export default createReactClass({
                     showCookieBar: false,
                 });
                 break;
-            case 'toggle_room_tab':
-                this._toggleRoomTab();
-                break;
-            case 'toggle_menu_tab':
-                this._toggleMenuTab();
-                break;
-        }
-    },
-
-    // RoomTab
-    _isRoomTabVisible: function() {
-        const rooms = document.getElementsByClassName('mx_RoomView');
-        if (rooms && rooms.length) {
-            return !rooms[0].classList.contains('toggled');
-        }
-        return null;
-    },
-
-    _showRoomTab: function() {
-        localStorage.setItem("mx_room_toggled", false); // update state if on home
-        if (!this._isRoomTabVisible()) {
-            this._toggleRoomTab();
-        }
-    },
-
-    _hideRoomTab: function() {
-        localStorage.setItem("mx_room_toggled", true); // update state if on home
-        if (this._isRoomTabVisible()) {
-            this._toggleRoomTab();
-        }
-    },
-
-    _toggleRoomTab: function() {
-        const rooms = document.getElementsByClassName('mx_RoomView');
-        if (rooms && rooms.length) {
-            rooms[0].classList.toggle('toggled');
-            localStorage.setItem("mx_room_toggled", rooms[0].classList.contains('toggled'));
-        }
-    },
-
-    // MenuTab
-    _isMenuTabVisible: function() {
-        const panel = document.getElementsByClassName('mx_LeftPanel_container');
-        if (panel && panel.length) {
-            return !panel[0].classList.contains('toggled');
-        }
-        return null;
-    },
-
-    _showMenuTab: function() {
-        if (!this._isMenuTabVisible()) {
-            this._toggleMenuTab();
-        }
-    },
-
-    _hideMenuTab: function() {
-        if (this._isMenuTabVisible()) {
-            this._toggleMenuTab();
-        }
-    },
-
-    _toggleMenuTab: function() {
-        const panel = document.getElementsByClassName('mx_LeftPanel_container');
-        if (panel && panel.length) {
-            panel[0].classList.toggle('toggled');
-            localStorage.setItem("mx_menu_toggled", panel[0].classList.contains('toggled'));
         }
     },
 
@@ -923,7 +857,7 @@ export default createReactClass({
         }
 
         if (roomInfo.from_click) {
-            this._showRoomTab();
+            localStorage.setItem("mx_room_toggled", false);
         }
 
         // Wait for the first sync to complete so that if a room does have an alias,

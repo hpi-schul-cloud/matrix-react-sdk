@@ -165,6 +165,9 @@ export default createReactClass({
 
             canReact: false,
             canReply: false,
+
+            // toggled
+            toggled: window.localStorage.getItem("mx_room_toggled") === 'true',
         };
     },
 
@@ -642,6 +645,13 @@ export default createReactClass({
                     });
                 }
                 break;
+            case 'toggle_room_tab':
+                const newToggleState = !this.state.toggled;
+                this.setState({
+                    toggled: newToggleState,
+                });
+                window.localStorage.setItem("mx_room_toggled", newToggleState);
+                break;
         }
     },
 
@@ -673,8 +683,7 @@ export default createReactClass({
 
         if (ev.getSender() !== this.context.credentials.userId) {
             // update unread count when scrolled up
-            const toggled = localStorage.getItem("mx_room_toggled") === 'true';
-            if (!this.state.searchResults && this.state.atEndOfLiveTimeline && !toggled) {
+            if (!this.state.searchResults && this.state.atEndOfLiveTimeline && !this.state.toggled) {
                 // no change
             } else if (!shouldHideEvent(ev)) {
                 this.setState((state, props) => {
@@ -1093,8 +1102,7 @@ export default createReactClass({
     },
 
     onMessageListScroll: function(ev) {
-        const toggled = localStorage.getItem("mx_room_toggled") === 'true';
-        if (this._messagePanel.isAtEndOfLiveTimeline() && !toggled) {
+        if (this._messagePanel.isAtEndOfLiveTimeline() && !this.state.toggled) {
             this.setState({
                 numUnreadMessages: 0,
                 atEndOfLiveTimeline: true,
@@ -1649,7 +1657,7 @@ export default createReactClass({
         const RoomRecoveryReminder = sdk.getComponent("rooms.RoomRecoveryReminder");
         const ErrorBoundary = sdk.getComponent("elements.ErrorBoundary");
 
-        const toggled = localStorage.getItem("mx_room_toggled") === 'true' ? 'toggled' : null;
+        const toggledClass = this.state.toggled ? 'toggled' : null;
 
         let badge;
         if (this.state.numUnreadMessages) {
@@ -1670,7 +1678,7 @@ export default createReactClass({
             const loading = this.state.roomLoading || this.state.peekLoading;
             if (loading) {
                 return (
-                    <div className={classNames('mx_RoomView', toggled)}>
+                    <div className={classNames('mx_RoomView', toggledClass)}>
                         <ErrorBoundary>
                             <RoomPreviewBar
                                 canPreview={false}
@@ -2044,9 +2052,34 @@ export default createReactClass({
             mx_RoomView_timeline_rr_enabled: this.state.showReadReceipts,
         });
 
+        const main = (
+            <MainSplit
+                panel={rightPanel}
+                resizeNotifier={this.props.resizeNotifier}
+            >
+                <div className={fadableSectionClasses}>
+                    {auxPanel}
+                    <div className={timelineClasses}>
+                        {topUnreadMessagesBar}
+                        {jumpToBottom}
+                        {messagePanel}
+                        {searchResultsPanel}
+                    </div>
+                    <div className={statusBarAreaClass}>
+                        <div className="mx_RoomView_statusAreaBox">
+                            <div className="mx_RoomView_statusAreaBox_line" />
+                            {statusBar}
+                        </div>
+                    </div>
+                    {previewBar}
+                    {messageComposer}
+                </div>
+            </MainSplit>
+        );
+
         return (
             <RoomContext.Provider value={this.state}>
-                <main className={classNames("mx_RoomView" , toggled, (inCall ? " mx_RoomView_inCall" : ""))} ref={this._roomView}>
+                <main className={classNames("mx_RoomView" , toggledClass, (inCall ? " mx_RoomView_inCall" : ""))} ref={this._roomView}>
                     <ErrorBoundary>
                         <RoomHeader
                             room={this.state.room}
@@ -2061,29 +2094,8 @@ export default createReactClass({
                             onLeaveClick={(myMembership === "join") ? this.onLeaveClick : null}
                             e2eStatus={this.state.e2eStatus}
                         />
-                        {badge}
-                        <MainSplit
-                            panel={rightPanel}
-                            resizeNotifier={this.props.resizeNotifier}
-                        >
-                            <div className={fadableSectionClasses}>
-                                {auxPanel}
-                                <div className={timelineClasses}>
-                                    {topUnreadMessagesBar}
-                                    {jumpToBottom}
-                                    {messagePanel}
-                                    {searchResultsPanel}
-                                </div>
-                                <div className={statusBarAreaClass}>
-                                    <div className="mx_RoomView_statusAreaBox">
-                                        <div className="mx_RoomView_statusAreaBox_line" />
-                                        {statusBar}
-                                    </div>
-                                </div>
-                                {previewBar}
-                                {messageComposer}
-                            </div>
-                        </MainSplit>
+                        { this.state.toggled && badge }
+                        { !this.state.toggled && main }
                     </ErrorBoundary>
                 </main>
             </RoomContext.Provider>
