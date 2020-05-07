@@ -16,19 +16,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 //html {
 //    /* hack to stop overscroll bounce on OSX and iOS.
 //       N.B. Breaks things when we have legitimate horizontal overscroll */
 //    height: 100%;
 //    overflow: hidden;
 //}
+//
+//&:root {
+//    font-size: 15px;
+//}
 
 @import "./_font-sizes.scss";
 
 #matrixchat {
     font-family: $font-family;
-    font-size: $font-15px;
+    font-size: 15px; // set base font size
     background-color: $primary-bg-color;
     color: $primary-fg-color;
     border: 0px;
@@ -38,10 +41,6 @@ limitations under the License.
     // see https://github.com/vector-im/riot-web/issues/11425
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    &:root {
-        font-size: 15px;
-    }
 
     .error, .warning,
     .text-error, .text-warning {

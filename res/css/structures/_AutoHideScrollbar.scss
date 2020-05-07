@@ -22,13 +22,13 @@ limitations under the License.
 //}
 
 #matrixchat {
-    &::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
         background-color: $scrollbar-track-color;
     }
 
-    &::-webkit-scrollbar-thumb {
+    ::-webkit-scrollbar-thumb {
         border-radius: 3px;
         background-color: $scrollbar-thumb-color;
     }
