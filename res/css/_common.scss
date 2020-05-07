@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+
 //html {
 //    /* hack to stop overscroll bounce on OSX and iOS.
 //       N.B. Breaks things when we have legitimate horizontal overscroll */
@@ -23,9 +24,11 @@ limitations under the License.
 //    overflow: hidden;
 //}
 
+@import "./_font-sizes.scss";
+
 #matrixchat {
     font-family: $font-family;
-    font-size: 15px;
+    font-size: $font-15px;
     background-color: $primary-bg-color;
     color: $primary-fg-color;
     border: 0px;
@@ -35,6 +38,10 @@ limitations under the License.
     // see https://github.com/vector-im/riot-web/issues/11425
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &:root {
+        font-size: 15px;
+    }
 
     .error, .warning,
     .text-error, .text-warning {
@@ -65,14 +72,12 @@ limitations under the License.
         color: $accent-color-alt;
     }
 
-    input[type=text],
-    input[type=search],
-    input[type=password] {
-        padding: 9px;
-        font-family: $font-family;
-        font-size: 14px;
-        font-weight: 600;
-        min-width: 0;
+    h2 {
+        color: $primary-fg-color;
+        font-weight: 400;
+        font-size: $font-18px;
+        margin-top: 16px;
+        margin-bottom: 16px;
     }
 
     input[type=text].mx_textinput_icon,
@@ -81,6 +86,17 @@ limitations under the License.
         background-repeat: no-repeat;
         background-position: 10px center;
     }
+
+    input[type=text],
+    input[type=search],
+    input[type=password] {
+        padding: 9px;
+        font-family: $font-family;
+        font-size: $font-14px;
+        font-weight: 600;
+        min-width: 0;
+    }
+
 
     // FIXME THEME - Tint by CSS rather than referencing a duplicate asset
     input[type=text].mx_textinput_icon.mx_textinput_search,
@@ -132,7 +148,6 @@ limitations under the License.
         border: 0;
     }
 }
-
 
 // .mx_textinput is a container for a text input
 // + some other controls like buttons, ...
@@ -249,7 +264,7 @@ limitations under the License.
     color: $light-fg-color;
     z-index: 4012;
     font-weight: 300;
-    font-size: 15px;
+    font-size: $font-15px;
     position: relative;
     padding: 25px 30px 30px 30px;
     max-height: 80%;
@@ -317,8 +332,8 @@ limitations under the License.
 }
 
 .mx_Dialog_title {
-    font-size: 22px;
-    line-height: 36px;
+    font-size: $font-22px;
+    line-height: $font-36px;
     color: $dialog-title-fg-color;
 }
 
@@ -346,7 +361,7 @@ limitations under the License.
 
 .mx_Dialog_content {
     margin: 24px 0 68px;
-    font-size: 14px;
+    font-size: $font-14px;
     color: $primary-fg-color;
     word-wrap: break-word;
 }
@@ -442,7 +457,7 @@ limitations under the License.
 }
 
 .mx_TextInputDialog_input {
-    font-size: 15px;
+    font-size: $font-15px;
     border-radius: 3px;
     border: 1px solid $input-border-color;
     padding: 9px;

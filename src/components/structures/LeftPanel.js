@@ -46,7 +46,8 @@ const LeftPanel = createReactClass({
         };
     },
 
-    componentWillMount: function() {
+    // TODO: [REACT-WARNING] Move this to constructor
+    UNSAFE_componentWillMount: function() {
         this.dispatcherRef = dis.register(this.onAction);
         this.focusedElement = null;
 

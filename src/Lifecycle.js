@@ -40,6 +40,7 @@ import ToastStore from "./stores/ToastStore";
 import {IntegrationManagers} from "./integrations/IntegrationManagers";
 import {Mjolnir} from "./mjolnir/Mjolnir";
 import DeviceListener from "./DeviceListener";
+import {Jitsi} from "./widgets/Jitsi";
 
 /**
  * Called at startup, to attempt to build a logged-in Matrix session. It tries
@@ -582,9 +583,6 @@ async function startMatrixClient(startSyncing=true) {
     UserActivity.sharedInstance().start();
     TypingStore.sharedInstance().reset(); // just in case
     ToastStore.sharedInstance().reset();
-    if (!SettingsStore.getValue("lowBandwidth")) {
-        Presence.start();
-    }
     DMRoomMap.makeShared().start();
     IntegrationManagers.sharedInstance().startWatching();
     ActiveWidgetStore.start();
@@ -607,6 +605,14 @@ async function startMatrixClient(startSyncing=true) {
 
     // This needs to be started after crypto is set up
     DeviceListener.sharedInstance().start();
+    // Similarly, don't start sending presence updates until we've started
+    // the client
+    if (!SettingsStore.getValue("lowBandwidth")) {
+        Presence.start();
+    }
+
+    // Now that we have a MatrixClientPeg, update the Jitsi info
+    await Jitsi.getInstance().update();
 
     // dispatch that we finished starting up to wire up any other bits
     // of the matrix client that cannot be set prior to starting up.
@@ -639,6 +645,10 @@ async function _clearStorage() {
 
     if (window.localStorage) {
         window.localStorage.clear();
+    }
+
+    if (window.sessionStorage) {
+        window.sessionStorage.clear();
     }
 
     // create a temporary client to clear out the persistent stores.
