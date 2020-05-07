@@ -46,11 +46,7 @@ function updateTintedDownloadImage() {
     // Also note that we can't use fetch here because fetch doesn't support
     // file URLs, which the download image will be if we're running from
     // the filesystem (like in an Electron wrapper).
-    let url = require("../../../../res/img/download.svg");
-    if (__webpack_public_path__) {
-        url = __webpack_public_path__ + url;
-    }
-    request({uri: url}, (err, response, body) => {
+    request({uri: require("../../../../res/img/download.svg")}, (err, response, body) => {
         if (err) return;
 
         const svg = new DOMParser().parseFromString(body, "image/svg+xml");
