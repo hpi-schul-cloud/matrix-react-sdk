@@ -36,16 +36,16 @@ const HomePage = () => {
         return <EmbeddedPage className="mx_HomePage" url={pageUrl} scrollbar={true} />;
     }
 
-    const brandingConfig = config.branding;
-    let logoUrl = "themes/riot/img/logos/riot-logo.svg";
-    if (brandingConfig && brandingConfig.authHeaderLogoUrl) {
-        logoUrl = brandingConfig.authHeaderLogoUrl;
-    }
+    // const brandingConfig = config.branding;
+    // let logoUrl = "themes/riot/img/logos/riot-logo.svg";
+    // if (brandingConfig && brandingConfig.authHeaderLogoUrl) {
+    //     logoUrl = brandingConfig.authHeaderLogoUrl;
+    // }
 
     const AccessibleButton = sdk.getComponent("elements.AccessibleButton");
     return <AutoHideScrollbar className="mx_HomePage mx_HomePage_default">
         <div className="mx_HomePage_default_wrapper">
-            <img src={logoUrl} alt="Riot" />
+            {/*<img src={logoUrl} alt="Riot" />*/}
             <h1>{ _t("Welcome to %(appName)s", { appName: config.brand || "Riot" }) }</h1>
             <h4>{ _t("Liberate your communication") }</h4>
             <div className="mx_HomePage_default_buttons">
