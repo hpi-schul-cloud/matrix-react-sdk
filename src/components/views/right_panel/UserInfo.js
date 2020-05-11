@@ -336,7 +336,7 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
         };
 
         ignoreButton = (
-            <AccessibleButton onClick={onIgnoreToggle} className={classNames("mx_UserInfo_field", {mx_UserInfo_destructive: !isIgnored})}>
+            <AccessibleButton onClick={onIgnoreToggle} className={classNames("mx_UserInfo_field", {mx_UserInfo_destructive: !isIgnored})} id="button-ignore">
                 { isIgnored ? _t("Unignore") : _t("Ignore") }
             </AccessibleButton>
         );
@@ -360,13 +360,13 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
             };
 
             readReceiptButton = (
-                <AccessibleButton onClick={onReadReceiptButton} className="mx_UserInfo_field">
+                <AccessibleButton onClick={onReadReceiptButton} className="mx_UserInfo_field" id="button-read-receipt">
                     { _t('Jump to read receipt') }
                 </AccessibleButton>
             );
 
             insertPillButton = (
-                <AccessibleButton onClick={onInsertPillButton} className={"mx_UserInfo_field"}>
+                <AccessibleButton onClick={onInsertPillButton} className={"mx_UserInfo_field"} id="button-mention">
                     { _t('Mention') }
                 </AccessibleButton>
             );
@@ -394,7 +394,7 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
             };
 
             inviteUserButton = (
-                <AccessibleButton onClick={onInviteUserButton} className="mx_UserInfo_field">
+                <AccessibleButton onClick={onInviteUserButton} className="mx_UserInfo_field" id="button-invite">
                     { _t('Invite') }
                 </AccessibleButton>
             );
@@ -402,7 +402,7 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
     }
 
     const shareUserButton = (
-        <AccessibleButton onClick={onShareUserClick} className="mx_UserInfo_field">
+        <AccessibleButton onClick={onShareUserClick} className="mx_UserInfo_field" id="button-share">
             { _t('Share Link to User') }
         </AccessibleButton>
     );
@@ -410,7 +410,7 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
     let directMessageButton;
     if (!isMe) {
         directMessageButton = (
-            <AccessibleButton onClick={() => openDMForUser(cli, member.userId)} className="mx_UserInfo_field">
+            <AccessibleButton onClick={() => openDMForUser(cli, member.userId)} className="mx_UserInfo_field"  id="button-direct">
                 { _t('Direct message') }
             </AccessibleButton>
         );
@@ -418,7 +418,7 @@ const UserOptionsSection = ({member, isIgnored, canInvite, devices}) => {
 
     return (
         <div className="mx_UserInfo_container">
-            <h3>{ _t("Options") }</h3>
+            <h3 id="headline-user-options">{ _t("Options") }</h3>
             <div>
                 { directMessageButton }
                 { readReceiptButton }
@@ -451,7 +451,7 @@ const _warnSelfDemote = async () => {
 const GenericAdminToolsContainer = ({children}) => {
     return (
         <div className="mx_UserInfo_container">
-            <h3>{ _t("Admin Tools") }</h3>
+            <h3 id="headline-admin-tools">{ _t("Admin Tools") }</h3>
             <div className="mx_UserInfo_buttons">
                 { children }
             </div>
@@ -539,7 +539,7 @@ const RoomKickButton = ({member, startUpdating, stopUpdating}) => {
     };
 
     const kickLabel = member.membership === "invite" ? _t("Disinvite") : _t("Kick");
-    return <AccessibleButton className="mx_UserInfo_field mx_UserInfo_destructive" onClick={onKick}>
+    return <AccessibleButton className="mx_UserInfo_field mx_UserInfo_destructive" onClick={onKick} id="button-kick">
         { kickLabel }
     </AccessibleButton>;
 };
@@ -614,7 +614,7 @@ const RedactMessagesButton = ({member}) => {
         }
     };
 
-    return <AccessibleButton className="mx_UserInfo_field mx_UserInfo_destructive" onClick={onRedactAllMessages}>
+    return <AccessibleButton className="mx_UserInfo_field mx_UserInfo_destructive" onClick={onRedactAllMessages} id="button-recent">
         { _t("Remove recent messages") }
     </AccessibleButton>;
 };
@@ -672,7 +672,7 @@ const BanToggleButton = ({member, startUpdating, stopUpdating}) => {
         mx_UserInfo_destructive: member.membership !== 'ban',
     });
 
-    return <AccessibleButton className={classes} onClick={onBanOrUnban}>
+    return <AccessibleButton className={classes} onClick={onBanOrUnban} id="button-ban">
         { label }
     </AccessibleButton>;
 };
@@ -738,7 +738,7 @@ const MuteToggleButton = ({member, room, powerLevels, startUpdating, stopUpdatin
     });
 
     const muteLabel = isMuted ? _t("Unmute") : _t("Mute");
-    return <AccessibleButton className={classes} onClick={onMuteToggle}>
+    return <AccessibleButton className={classes} onClick={onMuteToggle} id="button-mute">
         { muteLabel }
     </AccessibleButton>;
 };
@@ -1342,8 +1342,8 @@ const BasicUserInfo = ({room, member, groupId, devices, isRoomEncrypted}) => {
     }
 
     const securitySection = (
-        <div className="mx_UserInfo_container">
-            <h3>{ _t("Security") }</h3>
+        <div className="mx_UserInfo_container" id="container-security">
+            <h3 id="headline-security" >{ _t("Security") }</h3>
             <p>{ text }</p>
             { verifyButton }
             <DevicesSection

@@ -1805,6 +1805,7 @@
     "Cancel search": "Suche abbrechen",
 
     "__OVERWRITTEN_TRANSLATIONS__": "",
+    "You can’t disable this later. Bridges & most bots won’t work yet.": "",
     "Report Content to Your Homeserver Administrator": "Inhalt an deinen Schul-Cloud Administrator melden",
     "Reporting this message will send its unique 'event ID' to the administrator of your homeserver. If messages in this room are encrypted, your homeserver administrator will not be able to read the message text or view any files or images.": "Melde diese Nachricht an die Schul-Cloud Administratoren. Diese könenn die Nachricht prüfen und werden sie gegebenenfalls löschen."
 }
