@@ -212,7 +212,11 @@ export async function _waitForMember(client, roomId, userId, opts = { timeout: 1
  * can encrypt to.
  */
 export async function canEncryptToAllUsers(client, userIds) {
-    const usersDeviceMap = await client.downloadKeys(userIds);
+    const usersDeviceMap = await client.downloadKeys(userIds).catch(() => null);
+    if (!usersDeviceMap) {
+        return false;
+    }
+
     // { "@user:host": { "DEVICE": {...}, ... }, ... }
     return Object.values(usersDeviceMap).every((userDevices) =>
         // { "DEVICE": {...}, ... }
