@@ -650,7 +650,7 @@ export default createReactClass({
             try {
                 canDeactivate = await this.context.isSynapseAdministrator();
             } catch (e) {
-                console.error(e);
+                //console.error(e);
             }
         }
 
@@ -776,7 +776,7 @@ export default createReactClass({
         }
 
         return (
-            <div>
+            <div id="container-sessions">
                 <h3>{ _t("Sessions") }</h3>
                 <div className="mx_MemberInfo_devices">
                     { devComponents }
