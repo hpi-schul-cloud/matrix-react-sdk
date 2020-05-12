@@ -277,7 +277,10 @@ export default createReactClass({
                 }, "*");
             };
 
-            const url = "usercontent/"; // XXX: this path should probably be passed from the skin
+            let url = "usercontent/"; // XXX: this path should probably be passed from the skin
+            if(__webpack_public_path__) {
+                url = __webpack_public_path__ + url;
+            }
 
             // If the attachment is encrypted then put the link inside an iframe.
             return (
