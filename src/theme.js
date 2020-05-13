@@ -140,6 +140,7 @@ export function enumerateThemes() {
     const BUILTIN_THEMES = {
         "light": _t("Light theme"),
         "dark": _t("Dark theme"),
+        "schul-cloud": "Schul-Cloud",
     };
     const customThemes = SettingsStore.getValue("custom_themes");
     const customThemeNames = {};
