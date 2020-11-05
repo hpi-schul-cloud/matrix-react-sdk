@@ -2,13 +2,10 @@
 Copyright 2015, 2016 OpenMarket Ltd
 Copyright 2017 Vector Creations Ltd
 Copyright 2017, 2018, 2020 New Vector Ltd
-
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
-
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -256,7 +253,7 @@ class LoggedInView extends React.PureComponent<IProps, IState> {
     _loadResizerPreferences() {
         let lhsSize = parseInt(window.localStorage.getItem("mx_lhs_size"), 10);
         if (isNaN(lhsSize)) {
-            lhsSize = 350;
+            lhsSize = 300;
         }
         this.resizer.forHandleAt(0).resize(lhsSize);
     }
@@ -346,19 +343,15 @@ class LoggedInView extends React.PureComponent<IProps, IState> {
     React optimizes event handlers, by always attaching only 1 handler to the document for a given type.
     It then internally determines the order in which React event handlers should be called,
     emulating the capture and bubbling phases the DOM also has.
-
     But, as the native handler for React is always attached on the document,
     it will always run last for bubbling (first for capturing) handlers,
     and thus React basically has its own event phases, and will always run
     after (before for capturing) any native other event handlers (as they tend to be attached last).
-
     So ideally one wouldn't mix React and native event handlers to have bubbling working as expected,
     but we do need a native event handler here on the document,
     to get keydown events when there is no focused element (target=body).
-
     We also do need bubbling here to give child components a chance to call `stopPropagation()`,
     for keydown events it can handle itself, and shouldn't be redirected to the composer.
-
     So we listen with React on this component to get any events on focused elements, and get bubbling working as expected.
     We also listen with a native listener on the document to get keydown events when no element is focused.
     Bubbling is irrelevant here as the target is the body element.
@@ -379,19 +372,19 @@ class LoggedInView extends React.PureComponent<IProps, IState> {
     };
 
     _onKeyDown = (ev) => {
-            /*
-            // Remove this for now as ctrl+alt = alt-gr so this breaks keyboards which rely on alt-gr for numbers
-            // Will need to find a better meta key if anyone actually cares about using this.
-            if (ev.altKey && ev.ctrlKey && ev.keyCode > 48 && ev.keyCode < 58) {
-                dis.dispatch({
-                    action: 'view_indexed_room',
-                    roomIndex: ev.keyCode - 49,
-                });
-                ev.stopPropagation();
-                ev.preventDefault();
-                return;
-            }
-            */
+        /*
+        // Remove this for now as ctrl+alt = alt-gr so this breaks keyboards which rely on alt-gr for numbers
+        // Will need to find a better meta key if anyone actually cares about using this.
+        if (ev.altKey && ev.ctrlKey && ev.keyCode > 48 && ev.keyCode < 58) {
+            dis.dispatch({
+                action: 'view_indexed_room',
+                roomIndex: ev.keyCode - 49,
+            });
+            ev.stopPropagation();
+            ev.preventDefault();
+            return;
+        }
+        */
 
         let handled = false;
         const ctrlCmdOnly = isOnlyCtrlOrCmdKeyEvent(ev);
@@ -610,18 +603,18 @@ class LoggedInView extends React.PureComponent<IProps, IState> {
         switch (this.props.page_type) {
             case PageTypes.RoomView:
                 pageElement = <RoomView
-                        ref={this._roomView}
-                        autoJoin={this.props.autoJoin}
-                        onRegistered={this.props.onRegistered}
-                        thirdPartyInvite={this.props.thirdPartyInvite}
-                        oobData={this.props.roomOobData}
-                        viaServers={this.props.viaServers}
-                        eventPixelOffset={this.props.initialEventPixelOffset}
-                        key={this.props.currentRoomId || 'roomview'}
-                        disabled={this.props.middleDisabled}
-                        ConferenceHandler={this.props.ConferenceHandler}
-                        resizeNotifier={this.props.resizeNotifier}
-                    />;
+                    ref={this._roomView}
+                    autoJoin={this.props.autoJoin}
+                    onRegistered={this.props.onRegistered}
+                    thirdPartyInvite={this.props.thirdPartyInvite}
+                    oobData={this.props.roomOobData}
+                    viaServers={this.props.viaServers}
+                    eventPixelOffset={this.props.initialEventPixelOffset}
+                    key={this.props.currentRoomId || 'roomview'}
+                    disabled={this.props.middleDisabled}
+                    ConferenceHandler={this.props.ConferenceHandler}
+                    resizeNotifier={this.props.resizeNotifier}
+                />;
                 break;
 
             case PageTypes.MyGroups:
@@ -657,13 +650,13 @@ class LoggedInView extends React.PureComponent<IProps, IState> {
         let topBar;
         if (this.state.syncErrorData && this.state.syncErrorData.error.errcode === 'M_RESOURCE_LIMIT_EXCEEDED') {
             topBar = <ServerLimitBar kind='hard'
-                adminContact={this.state.syncErrorData.error.data.admin_contact}
-                limitType={this.state.syncErrorData.error.data.limit_type}
+                                     adminContact={this.state.syncErrorData.error.data.admin_contact}
+                                     limitType={this.state.syncErrorData.error.data.limit_type}
             />;
         } else if (usageLimitEvent) {
             topBar = <ServerLimitBar kind='soft'
-                adminContact={usageLimitEvent.getContent().admin_contact}
-                limitType={usageLimitEvent.getContent().limit_type}
+                                     adminContact={usageLimitEvent.getContent().admin_contact}
+                                     limitType={usageLimitEvent.getContent().limit_type}
             />;
         } else if (this.props.showCookieBar &&
             this.props.config.piwik &&

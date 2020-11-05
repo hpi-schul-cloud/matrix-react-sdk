@@ -62,7 +62,9 @@ class ConsoleLogger {
             const originalFn = consoleObj[fnName].bind(consoleObj);
             consoleObj[fnName] = (...args) => {
                 this.log(level, ...args);
-                originalFn(...args);
+                if (level !== 'I') {
+                    originalFn(...args);
+                }
             };
         });
     }

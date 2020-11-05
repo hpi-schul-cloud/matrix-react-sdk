@@ -24,6 +24,10 @@ import * as Avatar from '../../Avatar';
 import { _t } from '../../languageHandler';
 import dis from "../../dispatcher";
 import {ContextMenu, ContextMenuButton} from "./ContextMenu";
+import HeaderButton from "../views/right_panel/HeaderButton";
+import * as RoomNotifs from "../../RoomNotifs";
+import * as FormattingUtils from "../../utils/FormattingUtils";
+import * as sdk from "../../index";
 
 const AVATAR_SIZE = 28;
 
@@ -78,6 +82,10 @@ export default class TopLeftMenuButton extends React.Component {
         if (payload.action === "toggle_top_left_menu") {
             if (this._buttonRef) this._buttonRef.click();
         }
+
+        if (payload.action === "sync_state") {
+            this.forceUpdate();
+        }
     };
 
     _getDisplayName() {
@@ -91,9 +99,12 @@ export default class TopLeftMenuButton extends React.Component {
     }
 
     openMenu = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.setState({ menuDisplayed: true });
+        this._onCollapseClicked();
+
+        // TODO: add feature toggle, and toggle when collapsed
+        // e.preventDefault();
+        // e.stopPropagation();
+        // this.setState({ menuDisplayed: true });
     };
 
     closeMenu = () => {
@@ -102,17 +113,43 @@ export default class TopLeftMenuButton extends React.Component {
         });
     };
 
+    _onCollapseClicked() {
+        const payload = {
+            action: 'toggle_menu_tab',
+        };
+        dis.dispatch(payload);
+    }
+
     render() {
         const cli = MatrixClientPeg.get().getUserId();
+        const AccessibleButton = sdk.getComponent('elements.AccessibleButton');
 
         const name = this._getDisplayName();
         let nameElement;
         let chevronElement;
         if (!this.props.collapsed) {
+            // { name }
             nameElement = <div className="mx_TopLeftMenuButton_name">
-                { name }
+                Messenger
             </div>;
             chevronElement = <span className="mx_TopLeftMenuButton_chevron" />;
+        }
+
+        const notifications = RoomNotifs.countRoomsWithNotif(MatrixClientPeg.get().getRooms());
+
+        let badge;
+        if (notifications.count) {
+            badge = (
+                <AccessibleButton
+                    className="my_Notification_badge mx_RoomSubList_badge mx_RoomSubList_badgeHighlight"
+                    onClick={this._onCollapseClicked}
+                    aria-label={_t("Jump to first unread room.")}
+                >
+                    <div>
+                        { FormattingUtils.formatCount(notifications.totalCount) }
+                    </div>
+                </AccessibleButton>
+            );
         }
 
         let contextMenu;
@@ -132,25 +169,39 @@ export default class TopLeftMenuButton extends React.Component {
         }
 
         return <React.Fragment>
-            <ContextMenuButton
-                className="mx_TopLeftMenuButton"
-                onClick={this.openMenu}
-                inputRef={(r) => this._buttonRef = r}
-                label={_t("Your profile")}
-                isExpanded={this.state.menuDisplayed}
-            >
-                <BaseAvatar
-                    idName={MatrixClientPeg.get().getUserId()}
-                    name={name}
-                    url={this.state.profileInfo && this.state.profileInfo.avatarUrl}
-                    width={AVATAR_SIZE}
-                    height={AVATAR_SIZE}
-                    resizeMethod="crop"
-                />
-                { nameElement }
-                { chevronElement }
-            </ContextMenuButton>
 
+            <div className="my_HeaderContainer">
+                <ContextMenuButton
+                    className="mx_TopLeftMenuButton"
+                    onClick={this.openMenu}
+                    inputRef={(r) => this._buttonRef = r}
+                    label={_t("Your profile")}
+                    isExpanded={this.state.menuDisplayed}
+                >
+                    <BaseAvatar
+                        idName={MatrixClientPeg.get().getUserId()}
+                        name={name}
+                        url={require("../../../res/img/chat-icon.png") }
+                        width={AVATAR_SIZE}
+                        height={AVATAR_SIZE}
+                        resizeMethod="crop"
+                    />
+                    { nameElement }
+                    { chevronElement }
+                </ContextMenuButton>
+
+                <div className="my_CollapseButtons" onClick={this._onCollapseClicked}>
+                    <HeaderButton
+                        key="collapseButton"
+                        name="collapseButton"
+                        isHighlighted={false}
+                        onClick={function() {}}
+                        title={_t('Toggle')}
+                        analytics={['Left Panel', 'Collapse Button', 'click']}
+                    />
+                </div>
+                { badge }
+            </div>
             { contextMenu }
         </React.Fragment>;
     }

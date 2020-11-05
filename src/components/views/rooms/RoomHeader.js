@@ -20,12 +20,12 @@ import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
 import classNames from 'classnames';
 import * as sdk from '../../../index';
-import { _t } from '../../../languageHandler';
+import {_t} from '../../../languageHandler';
 import {MatrixClientPeg} from '../../../MatrixClientPeg';
 import Modal from "../../../Modal";
 import RateLimitedFunc from '../../../ratelimitedfunc';
 
-import { linkifyElement } from '../../../HtmlUtils';
+import {linkifyElement} from '../../../HtmlUtils';
 import AccessibleButton from '../elements/AccessibleButton';
 import ManageIntegsButton from '../elements/ManageIntegsButton';
 import {CancelButton} from './SimpleRoomHeader';
@@ -34,6 +34,8 @@ import RoomHeaderButtons from '../right_panel/RoomHeaderButtons';
 import DMRoomMap from '../../../utils/DMRoomMap';
 import E2EIcon from './E2EIcon';
 import InviteOnlyIcon from './InviteOnlyIcon';
+import HeaderButton from "../right_panel/HeaderButton";
+import dis from "../../../dispatcher";
 
 export default createReactClass({
     displayName: 'RoomHeader',
@@ -151,6 +153,21 @@ export default createReactClass({
         return !(currentPinEvent.getContent().pinned && currentPinEvent.getContent().pinned.length <= 0);
     },
 
+    _onCollapseClicked() {
+        const payload = {
+            action: 'toggle_room_tab',
+        };
+        dis.dispatch(payload);
+    },
+
+    _viewHome() {
+        localStorage.setItem('mx_last_room_id', '');
+        const payload = {
+            action: 'view_home_page',
+        };
+        dis.dispatch(payload);
+    },
+
     render: function() {
         const RoomAvatar = sdk.getComponent("avatars.RoomAvatar");
 
@@ -209,7 +226,7 @@ export default createReactClass({
 
         const textClasses = classNames('mx_RoomHeader_nametext', { mx_RoomHeader_settingsHint: settingsHint });
         const name =
-            <div className="mx_RoomHeader_name" onClick={this.props.onSettingsClick}>
+            <div className="mx_RoomHeader_name" onClick={this._onCollapseClicked}>
                 <div dir="auto" className={textClasses} title={roomName}>{ roomName }</div>
                 { searchStatus }
             </div>;
@@ -222,8 +239,8 @@ export default createReactClass({
             }
         }
         const topicElement =
-            <div className="mx_RoomHeader_topic" ref={this._topic} title={topic} dir="auto">{ topic }</div>;
-        const avatarSize = 28;
+            <div className="mx_RoomHeader_topic" onClick={this._onCollapseClicked} ref={this._topic} title={topic} dir="auto">{ topic }</div>;
+        const avatarSize = 36;
         let roomAvatar;
         if (this.props.room) {
             roomAvatar = (<RoomAvatar
@@ -231,7 +248,7 @@ export default createReactClass({
                 width={avatarSize}
                 height={avatarSize}
                 oobData={this.props.oobData}
-                viewAvatarOnClick={true} />);
+                viewAvatarOnClick={false} />);
         }
 
         if (this.props.onSettingsClick) {
@@ -316,13 +333,32 @@ export default createReactClass({
         return (
             <div className="mx_RoomHeader light-panel">
                 <div className="mx_RoomHeader_wrapper" aria-owns="mx_RightPanel">
-                    <div className="mx_RoomHeader_avatar">{ roomAvatar }{ e2eIcon }</div>
+                    <div className="mx_RoomHeader_avatar" onClick={this._onCollapseClicked}>{ roomAvatar }{ e2eIcon }</div>
                     { privateIcon }
                     { name }
                     { topicElement }
                     { cancelButton }
                     { rightRow }
                     <RoomHeaderButtons />
+                    <div className="my_CollapseButtons">
+                        <HeaderButton
+                            key="collapseButton"
+                            name="collapseButton"
+                            title={_t('Collapse')}
+                            onClick={this._onCollapseClicked}
+                            isHighlighted={false}
+                            analytics={['Right Panel', 'Collapse Button', 'click']}
+                        />
+
+                        <HeaderButton
+                            key="closeButton"
+                            name="closeButton"
+                            title={_t('Close')}
+                            onClick={this._viewHome}
+                            isHighlighted={false}
+                            analytics={['Right Panel', 'Close Button', 'click']}
+                        />
+                    </div>
                 </div>
             </div>
         );

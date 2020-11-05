@@ -163,7 +163,7 @@ const Notifier = {
                 if (sound.type) {
                     audioElement.type = sound.type;
                 }
-                document.body.appendChild(audioElement);
+                document.getElementById('matrixchat').appendChild(audioElement);
             }
             await audioElement.play();
         } catch (ex) {

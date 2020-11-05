@@ -32,7 +32,7 @@ import Modal from './Modal';
 import * as sdk from './index';
 import ActiveWidgetStore from './stores/ActiveWidgetStore';
 import PlatformPeg from "./PlatformPeg";
-import { sendLoginRequest } from "./Login";
+import {sendLoginRequest} from "./Login";
 import * as StorageManager from './utils/StorageManager';
 import SettingsStore from "./settings/SettingsStore";
 import TypingStore from "./stores/TypingStore";
@@ -190,35 +190,39 @@ export function attemptTokenLogin(queryParams, defaultDeviceDisplayName) {
 
 export function handleInvalidStoreError(e) {
     if (e.reason === Matrix.InvalidStoreError.TOGGLED_LAZY_LOADING) {
-        return Promise.resolve().then(() => {
-            const lazyLoadEnabled = e.value;
-            if (lazyLoadEnabled) {
-                const LazyLoadingResyncDialog =
-                    sdk.getComponent("views.dialogs.LazyLoadingResyncDialog");
-                return new Promise((resolve) => {
-                    Modal.createDialog(LazyLoadingResyncDialog, {
-                        onFinished: resolve,
-                    });
-                });
-            } else {
-                // show warning about simultaneous use
-                // between LL/non-LL version on same host.
-                // as disabling LL when previously enabled
-                // is a strong indicator of this (/develop & /app)
-                const LazyLoadingDisabledDialog =
-                    sdk.getComponent("views.dialogs.LazyLoadingDisabledDialog");
-                return new Promise((resolve) => {
-                    Modal.createDialog(LazyLoadingDisabledDialog, {
-                        onFinished: resolve,
-                        host: window.location.host,
-                    });
-                });
-            }
-        }).then(() => {
-            return MatrixClientPeg.get().store.deleteAllData();
-        }).then(() => {
-            PlatformPeg.get().reload();
-        });
+        return Promise.resolve()
+            // Reload automatically without confusing message
+            // .then(() => {
+            //     const lazyLoadEnabled = e.value;
+            //     if (lazyLoadEnabled) {
+            //         const LazyLoadingResyncDialog =
+            //             sdk.getComponent("views.dialogs.LazyLoadingResyncDialog");
+            //         return new Promise((resolve) => {
+            //             Modal.createDialog(LazyLoadingResyncDialog, {
+            //                 onFinished: resolve,
+            //             });
+            //         });
+            //     } else {
+            //         // show warning about simultaneous use
+            //         // between LL/non-LL version on same host.
+            //         // as disabling LL when previously enabled
+            //         // is a strong indicator of this (/develop & /app)
+            //         const LazyLoadingDisabledDialog =
+            //             sdk.getComponent("views.dialogs.LazyLoadingDisabledDialog");
+            //         return new Promise((resolve) => {
+            //             Modal.createDialog(LazyLoadingDisabledDialog, {
+            //                 onFinished: resolve,
+            //                 host: window.location.host,
+            //             });
+            //         });
+            //     }
+            // })
+            .then(() => {
+                return MatrixClientPeg.get().store.deleteAllData();
+            })
+            .then(() => {
+                PlatformPeg.get().reload();
+            });
     }
 }
 

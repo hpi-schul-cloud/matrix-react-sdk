@@ -16,22 +16,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//html {
+//    /* hack to stop overscroll bounce on OSX and iOS.
+//       N.B. Breaks things when we have legitimate horizontal overscroll */
+//    height: 100%;
+//    overflow: hidden;
+//}
+//
+//&:root {
+//    font-size: 15px;
+//}
+
 @import "./_font-sizes.scss";
 
-:root {
-    font-size: 15px;
-}
-
-html {
-    /* hack to stop overscroll bounce on OSX and iOS.
-       N.B. Breaks things when we have legitimate horizontal overscroll */
-    height: 100%;
-    overflow: hidden;
-}
-
-body {
+#matrixchat {
     font-family: $font-family;
-    font-size: $font-15px;
+    font-size: 15px; // set base font size
     background-color: $primary-bg-color;
     color: $primary-fg-color;
     border: 0px;
@@ -41,102 +41,111 @@ body {
     // see https://github.com/vector-im/riot-web/issues/11425
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
 
-pre, code {
-    font-family: $monospace-font-family;
-    font-size: 100% !important;
-}
+    .error, .warning,
+    .text-error, .text-warning {
+        color: $warning-color;
+    }
 
-.error, .warning,
-.text-error, .text-warning {
-    color: $warning-color;
-}
+    .text-success {
+        color: $accent-color;
+    }
 
-.text-success {
-    color: $accent-color;
-}
+    b {
+        // On Firefox, the default weight for `<b>` is `bolder` which results in no bold
+        // effect since we only have specific weights of our fonts available.
+        font-weight: bold;
+    }
 
-b {
-    // On Firefox, the default weight for `<b>` is `bolder` which results in no bold
-    // effect since we only have specific weights of our fonts available.
-    font-weight: bold;
-}
+    h2 {
+        color: $primary-fg-color;
+        font-weight: 400;
+        font-size: 18px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 
-h2 {
-    color: $primary-fg-color;
-    font-weight: 400;
-    font-size: $font-18px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-}
+    a:hover,
+    a:link,
+    a:visited {
+        color: $accent-color-alt;
+    }
 
-a:hover,
-a:link,
-a:visited {
-    color: $accent-color-alt;
-}
+    h2 {
+        color: $primary-fg-color;
+        font-weight: 400;
+        font-size: $font-18px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
 
-input[type=text],
-input[type=search],
-input[type=password] {
-    padding: 9px;
-    font-family: $font-family;
-    font-size: $font-14px;
-    font-weight: 600;
-    min-width: 0;
-}
+    input[type=text].mx_textinput_icon,
+    input[type=search].mx_textinput_icon {
+        padding-left: 36px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+    }
 
-input[type=text].mx_textinput_icon,
-input[type=search].mx_textinput_icon {
-    padding-left: 36px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-}
+    input[type=text],
+    input[type=search],
+    input[type=password] {
+        padding: 9px;
+        font-family: $font-family;
+        font-size: $font-14px;
+        font-weight: 600;
+        min-width: 0;
+    }
 
-// FIXME THEME - Tint by CSS rather than referencing a duplicate asset
-input[type=text].mx_textinput_icon.mx_textinput_search,
-input[type=search].mx_textinput_icon.mx_textinput_search {
-    background-image: url('$(res)/img/feather-customised/search-input.svg');
-}
 
-// dont search UI as not all browsers support it,
-// we implement it ourselves where needed instead
-input[type=search]::-webkit-search-decoration,
-input[type=search]::-webkit-search-cancel-button,
-input[type=search]::-webkit-search-results-button,
-input[type=search]::-webkit-search-results-decoration {
-    display: none;
-}
+    // FIXME THEME - Tint by CSS rather than referencing a duplicate asset
+    input[type=text].mx_textinput_icon.mx_textinput_search,
+    input[type=search].mx_textinput_icon.mx_textinput_search {
+        background-image: url('$(res)/img/feather-customised/search-input.svg');
+    }
 
-// Override Firefox's UA style so we get a consistent look across browsers
-input::placeholder,
-textarea::placeholder {
-    opacity: initial;
-}
+    // dont search UI as not all browsers support it,
+    // we implement it ourselves where needed instead
+    input[type=search]::-webkit-search-decoration,
+    input[type=search]::-webkit-search-cancel-button,
+    input[type=search]::-webkit-search-results-button,
+    input[type=search]::-webkit-search-results-decoration {
+        display: none;
+    }
 
-input[type=text], input[type=password], textarea {
-    background-color: transparent;
-    color: $primary-fg-color;
-}
+    // Override Firefox's UA style so we get a consistent look across browsers
+    input::placeholder,
+    textarea::placeholder {
+        opacity: initial;
+    }
 
-/* Required by Firefox */
-textarea {
-    font-family: $font-family;
-    color: $primary-fg-color;
-}
+    input[type=text], input[type=password], textarea {
+        background-color: transparent;
+        color: $primary-fg-color;
+    }
 
-input[type=text]:focus, input[type=password]:focus, textarea:focus {
-    outline: none;
-    box-shadow: none;
-}
+    /* Required by Firefox */
+    textarea {
+        font-family: $font-family;
+        color: $primary-fg-color;
+    }
 
-// This is used to hide the standard outline added by browsers for
-// accessible (focusable) components. Not intended for buttons, but
-// should be used on things like focusable containers where the outline
-// is usually not helping anyone.
-*:focus:not(.focus-visible) {
-    outline: none;
+    input[type=text]:focus, input[type=password]:focus, textarea:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    // This is used to hide the standard outline added by browsers for
+    // accessible (focusable) components. Not intended for buttons, but
+    // should be used on things like focusable containers where the outline
+    // is usually not helping anyone.
+    *:focus:not(.focus-visible) {
+        outline: none;
+    }
+
+    /* Prevent ugly dotted highlight around selected elements in Firefox */
+    ::-moz-focus-inner {
+        border: 0;
+    }
 }
 
 // .mx_textinput is a container for a text input
@@ -200,11 +209,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
         background-color: $input-lighter-bg-color;
         border: none;
     }
-}
-
-/* Prevent ugly dotted highlight around selected elements in Firefox */
-::-moz-focus-inner {
-    border: 0;
 }
 
 /* applied to side-panels and messagepanel when in RoomSettings */

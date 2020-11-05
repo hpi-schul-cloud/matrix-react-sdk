@@ -857,6 +857,10 @@ export default createReactClass({
             );
         }
 
+        if (roomInfo.from_click) {
+            localStorage.setItem("mx_room_toggled", false);
+        }
+
         // Wait for the first sync to complete so that if a room does have an alias,
         // it would have been retrieved.
         let waitFor = Promise.resolve(null);
@@ -1235,18 +1239,28 @@ export default createReactClass({
             } else if (getHomePageUrl(this.props.config)) {
                 dis.dispatch({action: 'view_home_page'});
             } else {
-                this.firstSyncPromise.promise.then(() => {
-                    dis.dispatch({action: 'view_next_room'});
-                });
+                dis.dispatch({action: 'view_home_page'});
+                // Don't open room if no room was opened before
+                // this.firstSyncPromise.promise.then(() => {
+                //     dis.dispatch({action: 'view_next_room'});
+                // });
             }
         }
     },
 
     _viewLastRoom: function() {
-        dis.dispatch({
-            action: 'view_room',
-            room_id: localStorage.getItem('mx_last_room_id'),
-        });
+        const storedIdentifier = localStorage.getItem('mx_last_room_id');
+        if (storedIdentifier.indexOf('!') === 0) {
+            dis.dispatch({
+                action: 'view_room',
+                room_id: storedIdentifier,
+            });
+        } else {
+            dis.dispatch({
+                action: 'view_room',
+                room_alias: storedIdentifier,
+            });
+        }
     },
 
     /**
@@ -1833,7 +1847,9 @@ export default createReactClass({
         } else {
             subtitle = `${this.subTitleStatus} ${subtitle}`;
         }
-        document.title = `${SdkConfig.get().brand || 'Riot'} ${subtitle}`;
+        if (false) { // TODO: add config to disable title changes
+            document.title = `${SdkConfig.get().brand || 'Riot'} ${subtitle}`;
+        }
     },
 
     updateStatusIndicator: function(state, prevState) {

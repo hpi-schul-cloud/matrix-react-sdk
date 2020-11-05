@@ -466,7 +466,7 @@ function weblateToCounterpart(inTrs) {
 function getLanguage(langPath) {
     return new Promise((resolve, reject) => {
         request(
-            { method: "GET", url: langPath },
+            { method: "GET", url: __webpack_public_path__ + langPath },
             (err, response, body) => {
                 if (err || response.status < 200 || response.status >= 300) {
                     reject({err: err, response: response});

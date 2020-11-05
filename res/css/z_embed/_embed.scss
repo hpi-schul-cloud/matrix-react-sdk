@@ -1,0 +1,370 @@
+
+// Overwrites
+
+// hide: resize room list
+.mx_ResizeHandle {
+    display: none;
+}
+
+// hide: communities
+.mx_LeftPanel_tagPanelContainer {
+    display: none;
+}
+
+// hide: user name menu icon (while button menu is deactivated)
+.mx_TopLeftMenuButton_chevron {
+    display: none;
+}
+
+// Browser fixes
+.mx_RoomHeader_avatar {
+    -ms-flex: inherit;
+    flex: inherit;
+}
+.mx_RoomTile_avatar {
+    -ms-flex: 0;
+    flex: inherit;
+    padding: 0;
+    width: auto;
+}
+// #matrixchat .mx_RoomHeader .mx_BaseAvatar_image in Firefox
+img {
+    max-width: none;
+}
+
+#matrixchat {
+    height: 0;
+    position: fixed;
+    bottom: 0;
+    right: 8px;
+    display: flex;
+    background: transparent;
+    box-sizing: content-box;
+    max-width: 90%;
+
+    @media (min-width: 1600px) {
+        max-width: 1400px;
+    }
+}
+
+.mx_MatrixChat {
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    padding: 2px;
+    padding-bottom: 0;
+    width: calc(100% - 4px);
+}
+
+
+// Startup
+.mx_MatrixChat_splash {
+    display: none;
+}
+
+.mx_AuthPage {
+    min-height: auto;
+    margin: auto 2px 0 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+
+    .mx_AuthPage_modal {
+        margin: 20px;
+    }
+}
+
+// Notifications
+.my_Notification_badge {
+    display: none; // only show when toggled
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    margin: 0;
+    z-index: 10;
+
+    & > div {
+        font-size: 16px;
+        border-radius: 12px;
+        min-width: 12px;
+        text-align: center;
+    }
+}
+
+// Chat
+.mx_LeftPanel_container {
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    max-height: 100%;
+    min-height: 400px;
+
+    @media (min-height: 900px) {
+        min-height: 500px;
+    }
+}
+
+.mx_GroupView {
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+}
+
+.mx_RoomView {
+    min-height: 600px;
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+    position: relative;
+    background-color: #f2f5f8;
+
+    .mx_MainSplit {
+        background-color: white;
+    }
+
+    .mx_RoomHeader_wrapper {
+        padding-left: 4px;
+    }
+
+    .mx_HeaderButtons::before {
+        margin-right: 10px;
+    }
+
+    .my_CollapseButtons {
+        display: flex;
+
+        &::before {
+            content: "";
+            background-color: #91A1C0;
+            opacity: 0.5;
+            margin: 0 10px 0 15px;
+            border-radius: 1px;
+            width: 1px;
+        }
+
+        .mx_RightPanel_collapseButton {
+            display: none;
+
+            &::before {
+                mask-image: url('$(res)/img/feather-customised/grid.svg');
+            }
+        }
+
+        .mx_RightPanel_closeButton::before {
+            height: 16px;
+            margin-top: 2px;
+            mask-image: url('$(res)/img/feather-customised/cancel.svg');
+        }
+    }
+
+    // toggled chat
+    transition: all 200ms;
+
+    &.toggled {
+        height: 53px;
+        min-height: 53px;
+        //overflow: hidden !important;
+        width: 300px;
+
+        .mx_RoomHeader_topic,
+        .mx_RoomHeader_buttons,
+        .mx_HeaderButtons,
+        .mx_JumpToBottomButton {
+            display: none;
+        }
+
+        .my_CollapseButtons {
+            margin-right: 0;
+            margin-left: auto;
+
+            &::before {
+                display: none;
+            }
+
+            .mx_RightPanel_collapseButton {
+                display: block;
+            }
+
+            .mx_RightPanel_closeButton {
+                display: none;
+            }
+        }
+
+        // fill available room to be clickable
+        .mx_RoomHeader_name {
+            flex-grow: 1;
+        }
+        // avoid to enter text in toggled input
+        .mx_BasicMessageComposer_input {
+            display: none;
+        }
+
+        // only show when toggled
+        .my_Notification_badge {
+            display: block;
+        }
+    }
+}
+
+.mx_MemberInfo_avatar {
+    background: none;
+
+    > img {
+        max-height: 15vh;
+    }
+}
+
+
+// Menu
+.my_HeaderContainer {
+    display: flex;
+    flex: 0 0 53px;
+
+    .mx_TopLeftMenuButton {
+        flex: 1;
+        z-index: 2;
+    }
+
+    .my_CollapseButtons {
+        border-bottom: 1px solid $panel-divider-color;
+        color: $topleftmenu-color;
+        background-color: $primary-bg-color;
+        padding: 14px 8px;
+
+        .mx_RightPanel_collapseButton::before {
+            mask-image: url('$(res)/img/feather-customised/grid.svg');
+        }
+    }
+}
+
+.mx_ContextualMenu_wrapper {
+    min-height: 200px;
+}
+
+.mx_LeftPanel_container {
+    position: relative;
+
+    // toggled menu
+    transition: all 200ms;
+
+    &.toggled {
+        height: 53px;
+        min-height: 53px;
+        //overflow: hidden;
+        width: 300px;
+
+        .mx_LeftPanel {
+            overflow: hidden;
+        }
+
+        .mx_RoomBreadcrumbs {
+            display: none;
+        }
+
+        // fix for firefox
+        .mx_LeftPanel_exploreAndFilterRow {
+            height: 0;
+            overflow: hidden;
+        }
+
+        // only show when toggled
+        .my_Notification_badge {
+            display: block;
+        }
+    }
+}
+
+.mx_MatrixToolbar {
+    right: 0;
+    left: 2px;
+    position: absolute;
+    bottom: 60px;
+    height: 53px;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+}
+
+// mirror tooltips
+.mx_Tooltip_chevron {
+    left: auto;
+    right: -7px;
+    border-right: none;
+    border-left: 7px solid $menu-border-color;
+}
+
+.mx_Tooltip_chevron::after {
+    border-right: none;
+    border-left: 6px solid $menu-bg-color;
+    left: auto;
+    right: 1px;
+}
+
+// small screens
+// > menu
+@media (max-width: 1000px) {
+    .my_HeaderContainer .my_CollapseButtons {
+        display: none;
+    }
+    .mx_RoomTile_nameContainer {
+        display: none;
+    }
+    .mx_LeftPanel_container.collapsed.mx_LeftPanel_container_hasTagPanel {
+        flex: 0;
+    }
+}
+
+// > room view
+@media (max-width: 700px) {
+    #matrixchat {
+        left: 8px;
+        max-width: none;
+    }
+    .mx_RoomHeader_wrapper {
+        overflow: hidden;
+    }
+
+    // full width content
+    .mx_RoomView_timeline_rr_enabled .mx_EventTile_line,
+    .mx_RoomView_timeline_rr_enabled .mx_EventTile_reply {
+        margin-right: 30px;
+    }
+    .mx_EventListSummary_toggle {
+        display: none;
+    }
+    .mx_EventTile .mx_SenderProfile,
+    .mx_EventTile_line,
+    .mx_EventTile_reply {
+        padding-left: 45px;
+    }
+    .mx_RoomView_MessageList {
+        padding: 5px;
+    }
+    .mx_EventListSummary .mx_EventTile_line {
+        padding-left: 65px;
+    }
+    .mx_EventListSummary_avatars {
+        margin-left: -20px;
+    }
+    .mx_EventTile.mx_EventTile_info .mx_EventTile_avatar {
+        left: 45px;
+    }
+    .mx_EventTile_info .mx_EventTile_line {
+        padding-left: 65px;
+    }
+
+    // align input
+    .mx_MessageComposer_wrapper {
+        padding-left: 50px;
+    }
+    .mx_MessageComposer .mx_MessageComposer_avatar {
+        left: 14px;
+    }
+}
+
+// > height
+@media (max-height: 600px) {
+    .mx_RoomView {
+        min-height: calc(100vh - 8px);
+    }
+}
+
+// Option: block-room-creation
+.block-room-creation {
+    .mx_RoomSubList_addRoom,
+    #button-direct {
+        display: none;
+    }
+}

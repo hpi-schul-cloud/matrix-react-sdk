@@ -650,7 +650,7 @@ export default createReactClass({
             try {
                 canDeactivate = await this.context.isSynapseAdministrator();
             } catch (e) {
-                console.error(e);
+                //console.error(e);
             }
         }
 
@@ -776,7 +776,7 @@ export default createReactClass({
         }
 
         return (
-            <div>
+            <div id="container-sessions">
                 <h3>{ _t("Sessions") }</h3>
                 <div className="mx_MemberInfo_devices">
                     { devComponents }
@@ -805,7 +805,7 @@ export default createReactClass({
         // same goes for jumping to read receipt
         if (member.userId !== cli.getUserId()) {
             ignoreButton = (
-                <AccessibleButton onClick={this.onIgnoreToggle} className="mx_MemberInfo_field">
+                <AccessibleButton onClick={this.onIgnoreToggle} className="mx_MemberInfo_field" id="button-ignore">
                     { this.state.isIgnoring ? _t("Unignore") : _t("Ignore") }
                 </AccessibleButton>
             );
@@ -831,13 +831,13 @@ export default createReactClass({
                 };
 
                 readReceiptButton = (
-                    <AccessibleButton onClick={onReadReceiptButton} className="mx_MemberInfo_field">
+                    <AccessibleButton onClick={onReadReceiptButton} className="mx_MemberInfo_field" id="button-read-receipt">
                         { _t('Jump to read receipt') }
                     </AccessibleButton>
                 );
 
                 insertPillButton = (
-                    <AccessibleButton onClick={onInsertPillButton} className={"mx_MemberInfo_field"}>
+                    <AccessibleButton onClick={onInsertPillButton} className={"mx_MemberInfo_field"} id="button-mention">
                         { _t('Mention') }
                     </AccessibleButton>
                 );
@@ -864,7 +864,7 @@ export default createReactClass({
                 };
 
                 inviteUserButton = (
-                    <AccessibleButton onClick={onInviteUserButton} className="mx_MemberInfo_field">
+                    <AccessibleButton onClick={onInviteUserButton} className="mx_MemberInfo_field" id="button-invite">
                         { _t('Invite') }
                     </AccessibleButton>
                 );
@@ -872,14 +872,14 @@ export default createReactClass({
         }
 
         const shareUserButton = (
-            <AccessibleButton onClick={this.onShareUserClick} className="mx_MemberInfo_field">
+            <AccessibleButton onClick={this.onShareUserClick} className="mx_MemberInfo_field" id="button-share">
                 { _t('Share Link to User') }
             </AccessibleButton>
         );
 
         return (
             <div>
-                <h3>{ _t("User Options") }</h3>
+                <h3 id="headline-user-options">{ _t("User Options") }</h3>
                 <div className="mx_MemberInfo_buttons">
                     { readReceiptButton }
                     { shareUserButton }
@@ -945,6 +945,7 @@ export default createReactClass({
                 mx_RoomTile_name: true,
             });
             let startNewChat = <AccessibleButton
+                id="button-direct"
                 className="mx_MemberInfo_createRoom"
                 onClick={this.onNewDMClick}
             >
@@ -972,7 +973,7 @@ export default createReactClass({
             const membership = this.props.member.membership;
             const kickLabel = membership === "invite" ? _t("Disinvite") : _t("Kick");
             kickButton = (
-                <AccessibleButton className="mx_MemberInfo_field"
+                <AccessibleButton className="mx_MemberInfo_field" id="button-kick"
                         onClick={this.onKick}>
                     { kickLabel }
                 </AccessibleButton>
@@ -981,7 +982,7 @@ export default createReactClass({
 
         if (this.state.can.redactMessages) {
             redactButton = (
-                <AccessibleButton className="mx_MemberInfo_field" onClick={this.onRedactAllMessages}>
+                <AccessibleButton className="mx_MemberInfo_field" onClick={this.onRedactAllMessages} id="button-recent">
                     { _t("Remove recent messages") }
                 </AccessibleButton>
             );
@@ -994,7 +995,7 @@ export default createReactClass({
             }
             banButton = (
                 <AccessibleButton className="mx_MemberInfo_field"
-                        onClick={this.onBanOrUnban}>
+                        onClick={this.onBanOrUnban} id="button-ban">
                     { label }
                 </AccessibleButton>
             );
@@ -1002,7 +1003,7 @@ export default createReactClass({
         if (this.state.can.mute) {
             const muteLabel = this.state.muted ? _t("Unmute") : _t("Mute");
             muteButton = (
-                <AccessibleButton className="mx_MemberInfo_field"
+                <AccessibleButton className="mx_MemberInfo_field" id="button-mute"
                         onClick={this.onMuteToggle}>
                     { muteLabel }
                 </AccessibleButton>
@@ -1010,7 +1011,7 @@ export default createReactClass({
         }
         if (this.state.can.toggleMod) {
             const giveOpLabel = this.state.isTargetMod ? _t("Revoke Moderator") : _t("Make Moderator");
-            giveModButton = <AccessibleButton className="mx_MemberInfo_field" onClick={this.onModToggle}>
+            giveModButton = <AccessibleButton className="mx_MemberInfo_field" id="button-mod" onClick={this.onModToggle}>
                 { giveOpLabel }
             </AccessibleButton>;
         }
@@ -1020,7 +1021,7 @@ export default createReactClass({
         const sameHomeserver = this.props.member.userId.endsWith(`:${MatrixClientPeg.getHomeserverName()}`);
         if (this.state.can.synapseDeactivate && sameHomeserver) {
             synapseDeactivateButton = (
-                <AccessibleButton onClick={this.onSynapseDeactivate} className="mx_MemberInfo_field">
+                <AccessibleButton onClick={this.onSynapseDeactivate} id="button-deactivate" className="mx_MemberInfo_field">
                     {_t("Deactivate user")}
                 </AccessibleButton>
             );
@@ -1030,7 +1031,7 @@ export default createReactClass({
         if (kickButton || banButton || muteButton || giveModButton || synapseDeactivateButton || redactButton) {
             adminTools =
                 <div>
-                    <h3>{ _t("Admin Tools") }</h3>
+                    <h3 id="headline-admin-tools">{ _t("Admin Tools") }</h3>
 
                     <div className="mx_MemberInfo_buttons">
                         { muteButton }

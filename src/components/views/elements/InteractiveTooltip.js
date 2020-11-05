@@ -31,7 +31,7 @@ function getOrCreateContainer() {
     if (!container) {
         container = document.createElement("div");
         container.id = InteractiveTooltipContainerId;
-        document.body.appendChild(container);
+        document.getElementById('matrixchat').appendChild(container);
     }
 
     return container;

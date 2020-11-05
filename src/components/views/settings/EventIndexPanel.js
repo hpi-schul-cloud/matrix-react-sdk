@@ -43,7 +43,7 @@ export default class EventIndexPanel extends React.Component {
 
         try {
             stats = await eventIndex.getStats();
-        } catch {
+        } catch (err) {
             // This call may fail if sporadically, not a huge issue as we will
             // try later again and probably succeed.
             return;
@@ -82,7 +82,7 @@ export default class EventIndexPanel extends React.Component {
                 const stats = await eventIndex.getStats();
                 eventIndexSize = stats.size;
                 roomCount = stats.roomCount;
-            } catch {
+            } catch (err) {
                 // This call may fail if sporadically, not a huge issue as we
                 // will try later again in the updateCurrentRoom call and
                 // probably succeed.

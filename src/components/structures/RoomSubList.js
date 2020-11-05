@@ -195,6 +195,7 @@ export default class RoomSubList extends React.PureComponent {
             action: 'view_room',
             show_room_tile: true, // to make sure the room gets scrolled into view
             room_id: roomId,
+            from_click: true,
             clear_search: (ev && (ev.key === Key.ENTER || ev.key === Key.SPACE)),
         });
     };

@@ -108,6 +108,10 @@ export class Layout {
     }
 
     _getAvailableHeight() {
+        if (this._availableHeight < 100) {
+            this._availableHeight = 402;
+        }
+
         const nonCollapsedSectionCount = this._sections.reduce((count, section) => {
             const collapsed = this._collapsedState[section.id];
             return count + (collapsed ? 0 : 1);
@@ -146,7 +150,7 @@ export class Layout {
     }
 
     _sectionHeight(count) {
-        return 36 + (count === 0 ? 0 : 4 + (count * 34));
+        return 40 + (count === 0 ? 0 : 4 + (count * 40));
     }
 
     _getMinHeight(i) {

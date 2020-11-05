@@ -47,6 +47,14 @@ export class ThemeWatcher {
             this._preferLight.addEventListener('change', this._onChange);
         }
         this._dispatcherRef = dis.register(this._onAction);
+
+        // add link tag lazy
+        if (!isCssBundleIncluded()) {
+            const hash = findBundleHash();
+            if (hash) {
+                loadCssFile(hash, 'bundle.css');
+            }
+        }
     }
 
     stop() {
@@ -132,6 +140,7 @@ export function enumerateThemes() {
     const BUILTIN_THEMES = {
         "light": _t("Light theme"),
         "dark": _t("Dark theme"),
+        "schul-cloud": "Schul-Cloud",
     };
     const customThemes = SettingsStore.getValue("custom_themes");
     const customThemeNames = {};
@@ -142,7 +151,7 @@ export function enumerateThemes() {
 }
 
 function setCustomThemeVars(customTheme) {
-    const {style} = document.body;
+    const {style} = document.getElementById('matrixchat');
     if (customTheme.colors) {
         for (const [name, hexColor] of Object.entries(customTheme.colors)) {
             style.setProperty(`--${name}`, hexColor);
@@ -193,14 +202,20 @@ export async function setTheme(theme) {
     for (let i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
         const href = a.getAttribute("href");
         // shouldn't we be using the 'title' tag rather than the href?
-        const match = href.match(/^bundles\/.*\/theme-(.*)\.css$/);
+        const match = href.match(/bundles\/.*\/theme-(.*)\.css$/);
         if (match) {
             styleElements[match[1]] = a;
         }
     }
 
     if (!(stylesheetName in styleElements)) {
-        throw new Error("Unknown theme " + stylesheetName);
+        const hash = findBundleHash();
+        // add link tag lazy
+        if (hash) {
+            styleElements[stylesheetName] = loadCssFile(hash, 'theme-' + stylesheetName + '.css');
+        } else {
+            throw new Error("Unknown theme " + stylesheetName);
+        }
     }
 
     // disable all of them first, then enable the one we want. Chrome only
@@ -253,4 +268,43 @@ export async function setTheme(theme) {
             switchTheme();
         }
     });
+}
+
+function findBundleHash() {
+    let hash;
+    let b;
+    for (let i = 0; (b = document.getElementsByTagName("script")[i]); i++) {
+        const href = b.getAttribute("src");
+        if (href && href.indexOf(__webpack_public_path__) === 0) {
+            const match = href.match(/bundles\/(.*)\/bundle\.js$/);
+            if (match) {
+                hash = match[1];
+            }
+        }
+    }
+    return hash;
+}
+
+function loadCssFile(hash, fileName) {
+    const newLink = document.createElement('link');
+    newLink.setAttribute('rel', 'stylesheet');
+    //newLink.setAttribute('disabled', '');
+    newLink.setAttribute('title', 'Theme');
+    newLink.setAttribute('href', __webpack_public_path__ + 'bundles/' + hash + '/' + fileName);
+    document.head.appendChild(newLink);
+    return newLink;
+}
+
+function isCssBundleIncluded() {
+    let a;
+    for (let i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+        const href = a.getAttribute("href");
+        if (href) {
+            const match = href.match(/bundles\/.*\/bundle\.css$/);
+            if (match) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

@@ -60,9 +60,10 @@ class Skinner {
 
     load(skinObject) {
         if (this.components !== null) {
-            throw new Error(
-                "Attempted to load a skin while a skin is already loaded"+
-                "If you want to change the active skin, call resetSkin first");
+            // throw new Error(
+            //     "Attempted to load a skin while a skin is already loaded"+
+            //     "If you want to change the active skin, call resetSkin first");
+            return;
         }
         this.components = {};
         const compKeys = Object.keys(skinObject.components);

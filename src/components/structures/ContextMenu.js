@@ -36,7 +36,7 @@ function getOrCreateContainer() {
     if (!container) {
         container = document.createElement("div");
         container.id = ContextualMenuContainerId;
-        document.body.appendChild(container);
+        document.getElementById('matrixchat').appendChild(container);
     }
 
     return container;
@@ -267,7 +267,8 @@ export class ContextMenu extends React.Component {
                 adjusted = Math.min(position.top, document.body.clientHeight - contextMenuRect.height + padding);
             }
 
-            position.top = adjusted;
+            //position.top = adjusted;
+            position.bottom = 343;
             chevronOffset.top = Math.max(props.chevronOffset, props.chevronOffset + target - adjusted);
         }
 
@@ -322,6 +323,14 @@ export class ContextMenu extends React.Component {
                 <div className="mx_ContextualMenu_background" style={wrapperStyle} onClick={props.onFinished} onContextMenu={this.onContextMenu} />
             );
         }
+
+        // move context menu
+        if (position.top) {
+            position.top -= (280 + window.scrollY);
+        } else {
+            position.bottom += window.scrollY;
+        }
+        position.left -= 260;
 
         return (
             <div className="mx_ContextualMenu_wrapper" style={{...position, ...wrapperStyle}} onKeyDown={this._onKeyDown}>

@@ -38,6 +38,9 @@ export default class Welcome extends React.PureComponent {
         if (!pageUrl) {
             pageUrl = 'welcome.html';
         }
+        if (__webpack_public_path__) {
+            pageUrl = __webpack_public_path__ + pageUrl;
+        }
 
         const {hsUrl, isUrl} = this.props.serverConfig;
         const tmpClient = Matrix.createClient({

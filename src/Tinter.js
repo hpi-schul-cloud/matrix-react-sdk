@@ -274,7 +274,7 @@ class Tinter {
                 document.getElementById('mx_theme_tertiaryAccentColor')).color;
         }
 
-        this.calcCssFixups();
+        //this.calcCssFixups();
         this.forceTint = true;
 
         this.tint(this.currentTint[0], this.currentTint[1], this.currentTint[2]);

@@ -277,7 +277,10 @@ export default createReactClass({
                 }, "*");
             };
 
-            const url = "usercontent/"; // XXX: this path should probably be passed from the skin
+            let url = "usercontent/"; // XXX: this path should probably be passed from the skin
+            if(__webpack_public_path__) {
+                url = __webpack_public_path__ + url;
+            }
 
             // If the attachment is encrypted then put the link inside an iframe.
             return (
@@ -334,7 +337,7 @@ export default createReactClass({
                         const tempAnchor = document.createElement('a');
                         tempAnchor.download = fileName;
                         tempAnchor.href = blobUrl;
-                        document.body.appendChild(tempAnchor); // for firefox: https://stackoverflow.com/a/32226068
+                        document.getElementById('matrixchat').appendChild(tempAnchor); // for firefox: https://stackoverflow.com/a/32226068
                         tempAnchor.click();
                         tempAnchor.remove();
                     });

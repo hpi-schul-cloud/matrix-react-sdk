@@ -131,7 +131,7 @@ export default createReactClass({
 
     render: function() {
         let picker;
-        const label = typeof this.props.label === "undefined" ? _t("Power level") : this.props.label;
+        const label = typeof this.props.label === "undefined" ? _t("Room Power level") : this.props.label;
         if (this.state.custom) {
             picker = (
                 <Field type="number"
