@@ -360,3 +360,11 @@ img {
         min-height: calc(100vh - 8px);
     }
 }
+
+// Option: block-room-creation
+.block-room-creation {
+    .mx_RoomSubList_addRoom,
+    #button-direct {
+        display: none;
+    }
+}
